@@ -1,5 +1,5 @@
-# Victorian Character Card
+# Victorian Character Cards
 
-Standalone GitHub Pages export for the Vitto Skalette character card.
+Standalone GitHub Pages exports for Victorian character cards.
 
-The published page is `index.html`.
+The published collection index is `index.html`.
