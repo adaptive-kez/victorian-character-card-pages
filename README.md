@@ -1,5 +1,5 @@
 # Victorian Character Card
 
-Standalone GitHub Pages export for the Arthur Hayward character card.
+Standalone GitHub Pages export for the Vitto Skalette character card.
 
 The published page is `index.html`.
