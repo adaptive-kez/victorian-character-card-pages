@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Тихая Монахиня</title>
+  <title>Оборотень</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -136,7 +136,7 @@
 
     .vitals {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
       gap: 10px;
       margin-bottom: 1.25rem;
     }
@@ -253,7 +253,7 @@
 
     .two-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
       margin-bottom: 1.25rem;
     }
@@ -266,7 +266,8 @@
     }
 
     .skill {
-      display: flex;
+      display: grid;
+      grid-template-columns: 10px minmax(120px, 0.35fr) minmax(0, 1fr);
       align-items: center;
       gap: 8px;
       padding: 7px 10px;
@@ -295,21 +296,24 @@
 
     .skill-name,
     .inv-name {
-      flex: 1;
       min-width: 0;
       color: var(--color-text-primary);
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .skill-bonus {
-      min-width: 28px;
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 13px;
-      text-align: right;
+      text-align: left;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .inv-item {
-      display: flex;
+      display: grid;
+      grid-template-columns: 24px minmax(140px, 0.38fr) minmax(0, 1fr);
       align-items: center;
       gap: 10px;
       padding: 8px 12px;
@@ -319,23 +323,25 @@
     }
 
     .inv-icon {
-      width: 20px;
+      width: 24px;
       color: var(--color-text-secondary);
       font-size: 16px;
       text-align: center;
     }
 
     .inv-note {
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 11px;
-      overflow-wrap: anywhere;
-      text-align: right;
+      overflow-wrap: break-word;
+      word-break: normal;
+      text-align: left;
     }
 
     .ability {
+      grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr);
       align-items: flex-start;
-      flex-direction: column;
-      gap: 2px;
+      gap: 6px;
     }
 
     .ability-name {
@@ -345,9 +351,11 @@
     }
 
     .ability-desc {
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 11px;
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .notes-box {
@@ -498,13 +506,13 @@
 <body>
   <article class="sheet">
 
-        <div class="sheet-title">Персонаж</div>
+        <div class="sheet-title">Карточка противника — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">ТМ</div>
+          <div class="avatar">О</div>
           <div class="header-info">
-            <div class="char-name">Тихая Монахиня</div>
-            <div class="char-sub">Класс · Раса · Уровень</div>
-            <div class="badges"><span class="badge">Сестра Агнес</span><span class="badge">Линь Сяохуэй</span></div>
+            <div class="char-name">Оборотень</div>
+            <div class="char-sub">Человеческая форма · Гуманоид (оборотень)</div>
+            <div class="badges"><span class="badge">Агрессивный</span><span class="badge">Оборотень</span><span class="badge">Сл 12</span></div>
           </div>
         </div>
 
@@ -512,59 +520,61 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">19</span>
-              <span class="vital-max">/ <span class="hp-max">19</span></span>
+              <span class="vital-val hp-val">22</span>
+              <span class="vital-max">/ <span class="hp-max">22</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
-              <button class="hp-btn" type="button" onclick="changeHP(this,-1)" aria-label="Уменьшить HP">-</button>
+              <button class="hp-btn" type="button" onclick="changeResource(this,-1)" aria-label="Уменьшить HP">-</button>
               <span style="font-size:11px;color:var(--color-text-secondary)">HP</span>
-              <button class="hp-btn" type="button" onclick="changeHP(this,1)" aria-label="Увеличить HP">+</button>
+              <button class="hp-btn" type="button" onclick="changeResource(this,1)" aria-label="Увеличить HP">+</button>
             </div>
           </div>
+
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
             <div class="vital-val">12</div>
-            <div class="vital-max">без доспеха + мудрость + ловкость</div>
+            <div class="vital-max">Кожаная куртка</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+0</div>
-            <div class="vital-max">Скорость: 9м</div>
+            <div class="vital-val">+1</div>
+            <div class="vital-max">Скорость: 30 футов</div>
           </div>
         </div>
+
 
         <div class="section-title">Характеристики</div>
         <div class="attrs">
           
             <div class="attr">
               <div class="attr-name">Сила</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Ловкость</div>
               <div class="attr-val">16</div>
               <div class="attr-mod">+3</div>
             </div>
           
             <div class="attr">
-              <div class="attr-name">Телосложение</div>
+              <div class="attr-name">Ловкость</div>
               <div class="attr-val">12</div>
               <div class="attr-mod">+1</div>
             </div>
           
             <div class="attr">
+              <div class="attr-name">Телосложение</div>
+              <div class="attr-val">14</div>
+              <div class="attr-mod">+2</div>
+            </div>
+          
+            <div class="attr">
               <div class="attr-name">Интеллект</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
+              <div class="attr-val">8</div>
+              <div class="attr-mod">-1</div>
             </div>
           
             <div class="attr">
               <div class="attr-name">Мудрость</div>
-              <div class="attr-val">16</div>
-              <div class="attr-mod">+3</div>
+              <div class="attr-val">10</div>
+              <div class="attr-mod">+0</div>
             </div>
           
             <div class="attr">
@@ -575,40 +585,27 @@
           
         </div>
 
-
         <div class="two-col">
 
           <div>
             <div class="section-title">Навыки</div>
             <div class="skills">
         <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Религия</span>
-          <span class="skill-bonus">+0</span>
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Иммунитет</span>
+          <span class="skill-bonus">Урон от обычного оружия в форме волка</span>
         </button>
       
         <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Внимательность</span>
-          <span class="skill-bonus">+0</span>
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Уязвимость</span>
+          <span class="skill-bonus">Серебро</span>
         </button>
       
         <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Скрытность</span>
-          <span class="skill-bonus">+0</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Выживание</span>
-          <span class="skill-bonus">+0</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Медицина</span>
-          <span class="skill-bonus">+0</span>
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Чувства</span>
+          <span class="skill-bonus">Ночное зрение 30 футов; Чутьё крови</span>
         </button>
       </div>
           </div>
@@ -617,49 +614,66 @@
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🗡️</span>
-          <span class="inv-name">Метательные иглы с ядом — 1к4 колющий урон, дистанция 20/60. *Особенность: Отравление* — при попадании цель преуспевает в спасброске Телосложения (Сл 13) или становится отравленной на 1 час.</span>
-          <span class="inv-note"></span>
+          <span class="inv-icon" aria-hidden="true">🔪</span>
+          <span class="inv-name">Тяжёлый нож</span>
+          <span class="inv-note">1к6+3 колющий</span>
+        </div>
+      
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">▣</span>
+          <span class="inv-name">Кожаная куртка</span>
+          <span class="inv-note">КД 12</span>
+        </div>
+      
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◈</span>
+          <span class="inv-name">Звериная природа</span>
+          <span class="inv-note">Переход в форму волка при низких НР</span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">🗡 Атакующее. Точечный удар</span>
-          <span class="ability-desc">При попадании атакой иглой можете потратить 1 ки для доп. эффекта: оглушение или сбивание с ног (как у монаха).</span>
+          <span class="ability-name">Тяжёлый нож</span>
+          <span class="ability-desc">🗡️ Атакующее · +5 к попаданию, 1к6+3 колющего урона.</span>
         </div>
       
         <div class="inv-item ability">
-          <span class="ability-name">🛡 Защитное. Ускользающая тень</span>
-          <span class="ability-desc">Реакция. Когда по вам попадают атакой, вы можете использовать часть движения, чтобы отступить, получив +5 к КД против этой атаки.</span>
+          <span class="ability-name">Бешеный отпор</span>
+          <span class="ability-desc">🛡️ Защитное · Реакция. Когда по оборотню попадают атакой, он может совершить одну атаку ножом в ответ. 2 раза в день.</span>
         </div>
       
         <div class="inv-item ability">
-          <span class="ability-name">💥 Ульта. Дождь отравленных игл</span>
-          <span class="ability-desc">1 раз в день. Все существа в 15-футовом конусе преуспевают в спасброске Ловкости (Сл 13), иначе получают 3к4 урона ядом и отравлены на 1 минуту.</span>
+          <span class="ability-name">Запугивающий рык</span>
+          <span class="ability-desc">⚡ Контроль · Действие. Один враг в 20 футах преуспевает в спасброске Мудрости (Сл 12), иначе испуган на 1 раунд.</span>
+        </div>
+      
+        <div class="inv-item ability">
+          <span class="ability-name">Оборотничество</span>
+          <span class="ability-desc">💀 Ульта · Когда НР падает до 5 или ниже, превращается в волка. В форме волка: +2 к КД, укус +6 (1к8+4), скорость 50 футов. Не контролирует себя и атакует ближайшую цель, включая союзников.</span>
         </div>
       </div>
           </div>
         </div>
 
         <div class="section-title">Предыстория</div>
-        <div class="notes-box">Тише. Я слышу, как страх пульсирует в его сонной артерии. Он ещё не знает, что уже мёртв. Просто дайте мне угол и две секунды.</div>
+        <div class="notes-box">Крупные, агрессивные существа, работающие на «комьевоежорскую контору» центрального района. В человеческой форме выглядят как грубые, волосатые мужчины с жёлтыми глазами.</div>
 
         <div class="footer">
-          <span class="footer-hint">Нажми на навык — переключить владение</span>
-          <span class="export-date">31.05.2026</span>
+          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
+          <span class="export-date">04.06.2026</span>
         </div>
       
   </article>
   <script>
-    function changeHP(button, delta) {
+    function changeResource(button, delta) {
       const vital = button.closest(".vital");
-      const hpNode = vital.querySelector(".hp-val");
-      const maxNode = vital.querySelector(".hp-max");
+      const valueNode = vital.querySelector(".hp-val, .resource-val");
+      const maxNode = vital.querySelector(".hp-max, .resource-max");
       const fill = vital.querySelector(".hp-fill");
       const max = Math.max(1, Number.parseInt(maxNode.textContent, 10) || 1);
-      const next = Math.max(0, Math.min(max, (Number.parseInt(hpNode.textContent, 10) || 0) + delta));
-      hpNode.textContent = next;
+      const next = Math.max(0, Math.min(max, (Number.parseInt(valueNode.textContent, 10) || 0) + delta));
+      valueNode.textContent = next;
       const pct = next / max;
       fill.style.width = Math.round(pct * 100) + "%";
       fill.style.background = pct > 0.5 ? "#639922" : pct > 0.25 ? "#ba7517" : "#b8483f";

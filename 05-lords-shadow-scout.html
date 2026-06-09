@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Денди-Соблазнитель</title>
+  <title>Разведчик «Тени Господни»</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -136,7 +136,7 @@
 
     .vitals {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
       gap: 10px;
       margin-bottom: 1.25rem;
     }
@@ -253,7 +253,7 @@
 
     .two-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
       margin-bottom: 1.25rem;
     }
@@ -266,7 +266,8 @@
     }
 
     .skill {
-      display: flex;
+      display: grid;
+      grid-template-columns: 10px minmax(120px, 0.35fr) minmax(0, 1fr);
       align-items: center;
       gap: 8px;
       padding: 7px 10px;
@@ -295,21 +296,24 @@
 
     .skill-name,
     .inv-name {
-      flex: 1;
       min-width: 0;
       color: var(--color-text-primary);
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .skill-bonus {
-      min-width: 28px;
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 13px;
-      text-align: right;
+      text-align: left;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .inv-item {
-      display: flex;
+      display: grid;
+      grid-template-columns: 24px minmax(140px, 0.38fr) minmax(0, 1fr);
       align-items: center;
       gap: 10px;
       padding: 8px 12px;
@@ -319,23 +323,25 @@
     }
 
     .inv-icon {
-      width: 20px;
+      width: 24px;
       color: var(--color-text-secondary);
       font-size: 16px;
       text-align: center;
     }
 
     .inv-note {
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 11px;
-      overflow-wrap: anywhere;
-      text-align: right;
+      overflow-wrap: break-word;
+      word-break: normal;
+      text-align: left;
     }
 
     .ability {
+      grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr);
       align-items: flex-start;
-      flex-direction: column;
-      gap: 2px;
+      gap: 6px;
     }
 
     .ability-name {
@@ -345,9 +351,11 @@
     }
 
     .ability-desc {
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 11px;
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .notes-box {
@@ -498,13 +506,13 @@
 <body>
   <article class="sheet">
 
-        <div class="sheet-title">Карточка персонажа</div>
+        <div class="sheet-title">Карточка противника — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">Д</div>
+          <div class="avatar">Р«</div>
           <div class="header-info">
-            <div class="char-name">Денди-Соблазнитель</div>
-            <div class="char-sub">Класс · Раса · Уровень</div>
-            <div class="badges"><span class="badge">Себастьян Вэнс</span><span class="badge">лорд Ашворт</span></div>
+            <div class="char-name">Разведчик «Тени Господни»</div>
+            <div class="char-sub">Снайпер · Гуманоид (человек)</div>
+            <div class="badges"><span class="badge">Хладнокровный</span><span class="badge">Арбалетчик-снайпер</span><span class="badge">Скрытность +5</span></div>
           </div>
         </div>
 
@@ -512,27 +520,29 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">19</span>
-              <span class="vital-max">/ <span class="hp-max">19</span></span>
+              <span class="vital-val hp-val">11</span>
+              <span class="vital-max">/ <span class="hp-max">11</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
-              <button class="hp-btn" type="button" onclick="changeHP(this,-1)" aria-label="Уменьшить HP">-</button>
+              <button class="hp-btn" type="button" onclick="changeResource(this,-1)" aria-label="Уменьшить HP">-</button>
               <span style="font-size:11px;color:var(--color-text-secondary)">HP</span>
-              <button class="hp-btn" type="button" onclick="changeHP(this,1)" aria-label="Увеличить HP">+</button>
+              <button class="hp-btn" type="button" onclick="changeResource(this,1)" aria-label="Увеличить HP">+</button>
             </div>
           </div>
+
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">14</div>
-            <div class="vital-max">кожаный жилет + ловкость</div>
+            <div class="vital-val">13</div>
+            <div class="vital-max">Кожаный доспех</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+0</div>
-            <div class="vital-max">Скорость: 9м</div>
+            <div class="vital-val">+3</div>
+            <div class="vital-max">Скорость: 30 футов</div>
           </div>
         </div>
+
 
         <div class="section-title">Характеристики</div>
         <div class="attrs">
@@ -551,30 +561,29 @@
           
             <div class="attr">
               <div class="attr-name">Телосложение</div>
+              <div class="attr-val">10</div>
+              <div class="attr-mod">+0</div>
+            </div>
+          
+            <div class="attr">
+              <div class="attr-name">Интеллект</div>
               <div class="attr-val">12</div>
               <div class="attr-mod">+1</div>
             </div>
           
             <div class="attr">
-              <div class="attr-name">Интеллект</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-            <div class="attr">
               <div class="attr-name">Мудрость</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
+              <div class="attr-val">14</div>
+              <div class="attr-mod">+2</div>
             </div>
           
             <div class="attr">
               <div class="attr-name">Харизма</div>
-              <div class="attr-val">16</div>
-              <div class="attr-mod">+3</div>
+              <div class="attr-val">10</div>
+              <div class="attr-mod">+0</div>
             </div>
           
         </div>
-
 
         <div class="two-col">
 
@@ -582,33 +591,15 @@
             <div class="section-title">Навыки</div>
             <div class="skills">
         <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Обман</span>
-          <span class="skill-bonus">+0</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Убеждение</span>
-          <span class="skill-bonus">+0</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Акробатика</span>
-          <span class="skill-bonus">+0</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Восприятие</span>
-          <span class="skill-bonus">+0</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
+          <span class="skill-dot proficient"></span>
           <span class="skill-name">Скрытность</span>
-          <span class="skill-bonus">+0</span>
+          <span class="skill-bonus">+5</span>
+        </button>
+      
+        <button class="skill" type="button" onclick="toggleSkill(this)">
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Восприятие</span>
+          <span class="skill-bonus">+4</span>
         </button>
       </div>
           </div>
@@ -617,49 +608,61 @@
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🪄</span>
-          <span class="inv-name">Трость-цепь 1к6 дробящий урон. *Особенность: Подсечка* — при попадании бонусным действием можно попытаться свалить противника (цель преуспевает в спасброске Ловкости, Сл 13).</span>
-          <span class="inv-note"></span>
+          <span class="inv-icon" aria-hidden="true">🏹</span>
+          <span class="inv-name">Серебряный арбалет</span>
+          <span class="inv-note">1к8+3 колющий; дистанция 80/320</span>
+        </div>
+      
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◆</span>
+          <span class="inv-name">Серебряные болты</span>
+          <span class="inv-note">Игнорируют сопротивление нежити</span>
+        </div>
+      
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">▣</span>
+          <span class="inv-name">Кожаный доспех</span>
+          <span class="inv-note">КД 13</span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">🗡 Атакующее. Ослепляющий удар</span>
-          <span class="ability-desc">При попадании атакой оружием цель до конца своего следующего хода совершает с помехой броски атаки по другим целям.</span>
+          <span class="ability-name">Серебряный арбалет</span>
+          <span class="ability-desc">🗡️ Атакующее · +5 к попаданию, 1к8+3 колющего урона, дистанция 80/320. Серебряные болты игнорируют сопротивление нежити.</span>
         </div>
       
         <div class="inv-item ability">
-          <span class="ability-name">🛡 Защитное. Уклонение Этуаль</span>
-          <span class="ability-desc">Реакция. Когда по вам провалена атака, заставьте атакующего сделать спасбросок Харизмы (Сл 13). При провале атака перенаправляется на другого врага в пределах досягаемости.</span>
+          <span class="ability-name">Отступление в тень</span>
+          <span class="ability-desc">🛡️ Защитное · Реакция. После атаки разведчик может переместиться на 10 футов и получить преимущество на Скрытность до начала следующего хода.</span>
         </div>
       
         <div class="inv-item ability">
-          <span class="ability-name">💥 Ульта. Очарование толпы</span>
-          <span class="ability-desc">1 раз в день. Все существа по вашему выбору в радиусе 30 футов преуспевают в спасброске Мудрости (Сл 13), иначе очарованы вами на 1 минуту.</span>
+          <span class="ability-name">Прицельный выстрел</span>
+          <span class="ability-desc">🎯 Контроль · Действие. Следующая атака арбалетом имеет преимущество.</span>
         </div>
       </div>
           </div>
         </div>
 
         <div class="section-title">Предыстория</div>
-        <div class="notes-box">«Очарование, мой дорогой, это всё. Оно важнее титула, богатства и самой жизни. А теперь — не дёргайтесь, я просто возьму у этого констебля показания… своим способом.»</div>
+        <div class="notes-box">Скрытный стрелок из арбалета, занимающий верхние точки. Работает серебряными болтами.</div>
 
         <div class="footer">
-          <span class="footer-hint">Нажми на навык — переключить владение</span>
-          <span class="export-date">31.05.2026</span>
+          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
+          <span class="export-date">04.06.2026</span>
         </div>
       
   </article>
   <script>
-    function changeHP(button, delta) {
+    function changeResource(button, delta) {
       const vital = button.closest(".vital");
-      const hpNode = vital.querySelector(".hp-val");
-      const maxNode = vital.querySelector(".hp-max");
+      const valueNode = vital.querySelector(".hp-val, .resource-val");
+      const maxNode = vital.querySelector(".hp-max, .resource-max");
       const fill = vital.querySelector(".hp-fill");
       const max = Math.max(1, Number.parseInt(maxNode.textContent, 10) || 1);
-      const next = Math.max(0, Math.min(max, (Number.parseInt(hpNode.textContent, 10) || 0) + delta));
-      hpNode.textContent = next;
+      const next = Math.max(0, Math.min(max, (Number.parseInt(valueNode.textContent, 10) || 0) + delta));
+      valueNode.textContent = next;
       const pct = next / max;
       fill.style.width = Math.round(pct * 100) + "%";
       fill.style.background = pct > 0.5 ? "#639922" : pct > 0.25 ? "#ba7517" : "#b8483f";

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vitto Skalette</title>
+  <title>Витто Скалетте</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -136,7 +136,7 @@
 
     .vitals {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
       gap: 10px;
       margin-bottom: 1.25rem;
     }
@@ -253,7 +253,7 @@
 
     .two-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
       margin-bottom: 1.25rem;
     }
@@ -266,7 +266,8 @@
     }
 
     .skill {
-      display: flex;
+      display: grid;
+      grid-template-columns: 10px minmax(120px, 0.35fr) minmax(0, 1fr);
       align-items: center;
       gap: 8px;
       padding: 7px 10px;
@@ -295,21 +296,24 @@
 
     .skill-name,
     .inv-name {
-      flex: 1;
       min-width: 0;
       color: var(--color-text-primary);
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .skill-bonus {
-      min-width: 28px;
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 13px;
-      text-align: right;
+      text-align: left;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .inv-item {
-      display: flex;
+      display: grid;
+      grid-template-columns: 24px minmax(140px, 0.38fr) minmax(0, 1fr);
       align-items: center;
       gap: 10px;
       padding: 8px 12px;
@@ -319,23 +323,25 @@
     }
 
     .inv-icon {
-      width: 20px;
+      width: 24px;
       color: var(--color-text-secondary);
       font-size: 16px;
       text-align: center;
     }
 
     .inv-note {
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 11px;
-      overflow-wrap: anywhere;
-      text-align: right;
+      overflow-wrap: break-word;
+      word-break: normal;
+      text-align: left;
     }
 
     .ability {
+      grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr);
       align-items: flex-start;
-      flex-direction: column;
-      gap: 2px;
+      gap: 6px;
     }
 
     .ability-name {
@@ -345,9 +351,11 @@
     }
 
     .ability-desc {
+      min-width: 0;
       color: var(--color-text-secondary);
       font-size: 11px;
-      overflow-wrap: anywhere;
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .notes-box {
@@ -498,13 +506,13 @@
 <body>
   <article class="sheet">
 
-        <div class="sheet-title">Персонаж</div>
+        <div class="sheet-title">Карточка персонажа — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">VS</div>
+          <div class="avatar">ВС</div>
           <div class="header-info">
-            <div class="char-name">Vitto Skalette</div>
-            <div class="char-sub">Класс · Раса · Уровень</div>
-            <div class="badges"><span class="badge">Ночной Хирург</span><span class="badge">Клятва Мщения</span></div>
+            <div class="char-name">Витто Скалетте</div>
+            <div class="char-sub">Ночной Хирург · Чумной Доктор · Вампир · Уровень 2</div>
+            <div class="badges"><span class="badge">Холодный расчет</span><span class="badge">Хирург-боец</span><span class="badge">Бонус мастерства +2</span></div>
           </div>
         </div>
 
@@ -517,22 +525,37 @@
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
-              <button class="hp-btn" type="button" onclick="changeHP(this,-1)" aria-label="Уменьшить HP">-</button>
+              <button class="hp-btn" type="button" onclick="changeResource(this,-1)" aria-label="Уменьшить HP">-</button>
               <span style="font-size:11px;color:var(--color-text-secondary)">HP</span>
-              <button class="hp-btn" type="button" onclick="changeHP(this,1)" aria-label="Увеличить HP">+</button>
+              <button class="hp-btn" type="button" onclick="changeResource(this,1)" aria-label="Увеличить HP">+</button>
+            </div>
+          </div>
+
+          <div class="vital resource-vital" data-resource="blood">
+            <div class="vital-label">Очки крови</div>
+            <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
+              <span class="vital-val resource-val">10</span>
+              <span class="vital-max">/ <span class="resource-max">10</span></span>
+            </div>
+            <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
+            <div class="hp-controls">
+              <button class="hp-btn" type="button" onclick="changeResource(this,-1)" aria-label="Уменьшить очки крови">-</button>
+              <span style="font-size:11px;color:var(--color-text-secondary)">КРОВЬ</span>
+              <button class="hp-btn" type="button" onclick="changeResource(this,1)" aria-label="Увеличить очки крови">+</button>
             </div>
           </div>
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">16</div>
-            <div class="vital-max">кожаный доспех + ловкость</div>
+            <div class="vital-val">15</div>
+            <div class="vital-max">Кожа + ловкость</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+0</div>
-            <div class="vital-max">Скорость: 9м</div>
+            <div class="vital-val">+2</div>
+            <div class="vital-max">Скорость: 30 футов</div>
           </div>
         </div>
+
 
         <div class="section-title">Характеристики</div>
         <div class="attrs">
@@ -551,7 +574,7 @@
           
             <div class="attr">
               <div class="attr-name">Телосложение</div>
-              <div class="attr-val">14</div>
+              <div class="attr-val">15</div>
               <div class="attr-mod">+2</div>
             </div>
           
@@ -575,16 +598,21 @@
           
         </div>
 
-
         <div class="two-col">
 
           <div>
             <div class="section-title">Навыки</div>
             <div class="skills">
         <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot "></span>
-          <span class="skill-name">Медицина (преимущество для определения причины смерти/ранения), Расследование, Запугивание, Восприятие</span>
-          <span class="skill-bonus">+0</span>
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Спасброски</span>
+          <span class="skill-bonus">Сила, Телосложение</span>
+        </button>
+      
+        <button class="skill" type="button" onclick="toggleSkill(this)">
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Медицина</span>
+          <span class="skill-bonus">Преимущество для определения причины смерти</span>
         </button>
       </div>
           </div>
@@ -593,49 +621,84 @@
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">⚔</span>
+          <span class="inv-name">Хирургическая пила</span>
+          <span class="inv-note">1к8+3 рубящий</span>
+        </div>
+      
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">▣</span>
+          <span class="inv-name">Кожаный доспех</span>
+          <span class="inv-note">КД 15</span>
+        </div>
+      
+        <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">⚙</span>
-          <span class="inv-name">Хирургическая пила (1к8 рубящий урон, можно использовать для Медицинской экспертизы — преимущество на проверки Интеллекта (Медицина) для определения причины смерти/ранения).</span>
-          <span class="inv-note"></span>
+          <span class="inv-name">Набор хирургических инструментов</span>
+          <span class="inv-note">Ланцеты, зажимы, иглы</span>
+        </div>
+      
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◈</span>
+          <span class="inv-name">Пузырьки с формальдегидом</span>
+          <span class="inv-note">Можно использовать как отравляющие вещества</span>
+        </div>
+      
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">✦</span>
+          <span class="inv-name">Серебряный скальпель</span>
+          <span class="inv-note">Трофей с Джека Потрошителя; 1к4, игнорирует сопротивление</span>
+        </div>
+      
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">🩸</span>
+          <span class="inv-name">Флакон с кровью Кроули</span>
+          <span class="inv-note">Восстанавливает 1к8 НР, 1 раз</span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Рассечение</span>
-          <span class="ability-desc">(доп. урон 1к4 некротической энергии при попадании).</span>
+          <span class="ability-name">Глубокое Рассечение</span>
+          <span class="ability-desc">🗡️ Атакующее · При попадании наносит дополнительно 1к6 некротического урона. Если цель — живое существо, она теряет 1к4 НР в начале своего следующего хода.</span>
         </div>
       
         <div class="inv-item ability">
-          <span class="ability-name">Превентивный надрез</span>
-          <span class="ability-desc">(реакция, +2 к КД против одной атаки в ближнем бою).</span>
+          <span class="ability-name">Экстренный Надрез</span>
+          <span class="ability-desc">🛡️ Защитное · Реакция. Когда по вам или союзнику в 5 футах попадают атакой, вы можете получить +3 к КД против этой атаки, но Витто получает 1к4 некротического урона; сопротивление игнорируется.</span>
         </div>
       
         <div class="inv-item ability">
-          <span class="ability-name">Хирургическая ярость</span>
-          <span class="ability-desc">(на 1 минуту, оружие наносит дополнительно 1к6 некротического урона, 1/день).</span>
+          <span class="ability-name">Кровавый Ланцет</span>
+          <span class="ability-desc">🩸 Вампирское · Действие. Бросок атаки ближнего боя (+5). При попадании: 1к6+3 колющего урона. Вы восстанавливаете НР, равные половине нанесённого урона, округляя вниз. Против нежити восстанавливает только 1к4.</span>
+        </div>
+      
+        <div class="inv-item ability">
+          <span class="ability-name">Хирургическая Ярость</span>
+          <span class="ability-desc">💥 Ульта · 1 раз в день. В течение 1 минуты оружие наносит дополнительно 1к8 некротического урона. Пока активно умение, критический ход — на 19-20.</span>
         </div>
       </div>
           </div>
         </div>
 
         <div class="section-title">Предыстория</div>
-        <div class="notes-box">Я провожу вскрытие на ещё дышащем теле общества. Не мешайте. И не стойте у меня за спиной — могу задеть пилой.</div>
+        <div class="notes-box">Ночной хирург, привыкший видеть тело как механизм. Его холодная точность пугает даже союзников.</div>
 
         <div class="footer">
-          <span class="footer-hint">Нажми на навык — переключить владение</span>
-          <span class="export-date">31.05.2026</span>
+          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
+          <span class="export-date">09.06.2026</span>
         </div>
       
   </article>
   <script>
-    function changeHP(button, delta) {
+    function changeResource(button, delta) {
       const vital = button.closest(".vital");
-      const hpNode = vital.querySelector(".hp-val");
-      const maxNode = vital.querySelector(".hp-max");
+      const valueNode = vital.querySelector(".hp-val, .resource-val");
+      const maxNode = vital.querySelector(".hp-max, .resource-max");
       const fill = vital.querySelector(".hp-fill");
       const max = Math.max(1, Number.parseInt(maxNode.textContent, 10) || 1);
-      const next = Math.max(0, Math.min(max, (Number.parseInt(hpNode.textContent, 10) || 0) + delta));
-      hpNode.textContent = next;
+      const next = Math.max(0, Math.min(max, (Number.parseInt(valueNode.textContent, 10) || 0) + delta));
+      valueNode.textContent = next;
       const pct = next / max;
       fill.style.width = Math.round(pct * 100) + "%";
       fill.style.background = pct > 0.5 ? "#639922" : pct > 0.25 ? "#ba7517" : "#b8483f";

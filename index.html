@@ -14,85 +14,67 @@
       --border: #d5cec0;
       --accent: #639922;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
       background: var(--bg);
       color: var(--text);
       font-family: Inter, Arial, Helvetica, sans-serif;
-      padding: 32px 18px;
+      line-height: 1.5;
     }
-
     main {
-      width: min(860px, 100%);
+      width: min(920px, 100%);
       margin: 0 auto;
+      padding: 40px 20px;
     }
-
     h1 {
       margin: 0 0 8px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(32px, 6vw, 54px);
-      line-height: 1;
+      font-family: Georgia, serif;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.1;
     }
-
-    p {
-      margin: 0 0 24px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .grid {
+    p { margin: 0 0 24px; color: var(--muted); }
+    ol {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
-
     a {
       display: block;
-      min-height: 86px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--panel);
+      padding: 14px 16px;
       color: var(--text);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
       text-decoration: none;
-      box-shadow: 0 18px 40px rgba(36, 35, 31, 0.08);
+      overflow-wrap: anywhere;
     }
-
-    a:hover,
-    a:focus-visible {
-      border-color: var(--accent);
-      outline: 2px solid rgba(99, 153, 34, 0.22);
-      outline-offset: 2px;
-    }
-
-    span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 13px;
-    }
+    a:hover { border-color: var(--accent); }
   </style>
 </head>
 <body>
   <main>
     <h1>Victorian Character Cards</h1>
-    <p>Опубликованные карточки персонажей.</p>
-    <div class="grid">
-      <a href="./vitto-skalette/">Vitto Skalette<span>/vitto-skalette/</span></a>
-      <a href="./dendi-soblaznitel/">Денди-Соблазнитель<span>/dendi-soblaznitel/</span></a>
-      <a href="./tihaya-monahinya/">Тихая Монахиня<span>/tihaya-monahinya/</span></a>
-      <a href="./nastyrnyy-reporter/">Настырный Репортёр<span>/nastyrnyy-reporter/</span></a>
-      <a href="./dimasik/">Димасик<span>/dimasik/</span></a>
-      <a href="./jack-ripper/">Джек Потрошитель<span>/jack-ripper/</span></a>
-      <a href="./zhandarm/">Жандарм<span>/zhandarm/</span></a>
-      <a href="./shpana/">Шпана<span>/shpana/</span></a>
-    </div>
+    <p>Публичные HTML-карточки персонажей и мобов. Всего файлов: 13.</p>
+    <ol>
+        <li><a href="01-bishop-callist-graves.html">01-bishop-callist-graves.html — Епископ Каллист Грейвз</a></li>
+        <li><a href="02-skal-scavenger-vampire.html">02-skal-scavenger-vampire.html — Скаль</a></li>
+        <li><a href="03-werewolf-human-form.html">03-werewolf-human-form.html — Оборотень</a></li>
+        <li><a href="04-silver-hound-fighter.html">04-silver-hound-fighter.html — Боец Святого Ордена</a></li>
+        <li><a href="05-lords-shadow-scout.html">05-lords-shadow-scout.html — Разведчик «Тени Господни»</a></li>
+        <li><a href="06-holy-order-captain.html">06-holy-order-captain.html — Капитан Святого Ордена</a></li>
+        <li><a href="07-constable.html">07-constable.html — Констебль</a></li>
+        <li><a href="08-vitto-scalette.html">08-vitto-scalette.html — Витто Скалетте</a></li>
+        <li><a href="09-gretta-turner.html">09-gretta-turner.html — Гретта Тёрнер</a></li>
+        <li><a href="10-constable-henry-brown.html">10-constable-henry-brown.html — Констебль Генри Браун</a></li>
+        <li><a href="11-katrin-night-recruiter.html">11-katrin-night-recruiter.html — Катрин</a></li>
+        <li><a href="12-finn-newspaper-boy.html">12-finn-newspaper-boy.html — Финн</a></li>
+        <li><a href="13-leonid-time-blood-keeper.html">13-leonid-time-blood-keeper.html — Леонид</a></li>
+    </ol>
   </main>
 </body>
 </html>
