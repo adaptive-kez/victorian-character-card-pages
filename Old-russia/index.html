@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Пять дней до петли - карточки</title>
+  <style>
+    :root {
+      --bg: #efe9dc;
+      --paper: #fffaf0;
+      --paper-2: #f6efe1;
+      --ink: #25231f;
+      --muted: #746d60;
+      --line: #d5c6b3;
+      --accent: #8f2f2b;
+      --accent-2: #bd7a2f;
+      --dark: #2f2622;
+      --good: #2f6f4f;
+      --warn: #9a6a20;
+      --bad: #9c2f2f;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(143, 47, 43, 0.12), transparent 32rem),
+        linear-gradient(180deg, #f7f1e5 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    a { color: inherit; }
+
+    .app {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 20px 0 18px;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1.05;
+      color: var(--dark);
+    }
+
+    .lead {
+      max-width: 820px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin: 8px 0 20px;
+      padding: 12px;
+      background: rgba(255, 250, 240, 0.94);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+    }
+
+    .search {
+      width: 100%;
+      min-height: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fffdf7;
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .filter {
+      min-height: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--paper-2);
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .filter.active {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fffaf0;
+    }
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      color: var(--dark);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      display: grid;
+      gap: 14px;
+      padding: 16px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 32px rgba(47, 38, 34, 0.08);
+    }
+
+    .card:target {
+      outline: 3px solid rgba(143, 47, 43, 0.28);
+      scroll-margin-top: 86px;
+    }
+
+    .card-head {
+      display: grid;
+      grid-template-columns: 54px 1fr auto;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .sigil {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fffaf0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      margin: 0 0 4px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      color: var(--dark);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .type {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--paper-2);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .stat {
+      min-height: 58px;
+      padding: 9px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--paper-2);
+      text-align: center;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .hp-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .hp-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fffdf7;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hpbar {
+      flex: 1;
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #ded0bd;
+    }
+
+    .hpfill {
+      height: 100%;
+      width: 100%;
+      background: var(--good);
+      transition: width .2s ease, background .2s ease;
+    }
+
+    .block h4 {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .block p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li + li { margin-top: 4px; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      padding: 4px 7px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fffdf7;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .actions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .action {
+      padding: 10px;
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      background: var(--paper-2);
+    }
+
+    .action b { color: var(--dark); }
+
+    .card-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .copy {
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 760px) {
+      .app { width: min(100vw - 20px, 1180px); padding-top: 12px; }
+      .toolbar { grid-template-columns: 1fr; }
+      .filters { justify-content: stretch; }
+      .filter { flex: 1; }
+      .card-head { grid-template-columns: 46px 1fr; }
+      .type { grid-column: 1 / -1; justify-self: start; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="eyebrow">DND / Пять дней до петли</div>
+      <h1>Карточки героев, NPC и мобов</h1>
+      <p class="lead">Единый HTML-конструктор для мастера: поиск, фильтры, боевые параметры, действия и быстрые ссылки на каждую карточку.</p>
+    </header>
+
+    <div class="toolbar">
+      <input id="search" class="search" type="search" placeholder="Найти по имени, роли, сцене или действию">
+      <div class="filters" aria-label="Фильтр карточек">
+        <button class="filter active" data-filter="all">Все</button>
+        <button class="filter" data-filter="hero">Герои</button>
+        <button class="filter" data-filter="npc">NPC</button>
+        <button class="filter" data-filter="mob">Мобы</button>
+      </div>
+    </div>
+
+    <main id="content"></main>
+  </div>
+
+  <script>
+    const cards = [
+      {
+        id: "yashka-brosok",
+        type: "hero",
+        name: "Яшка-Бросок",
+        subtitle: "Ловкач, дальний боец, отвлекающий маневрист",
+        sigil: "Я",
+        stats: { "ХП": "30", "КЗ": "14", "Скорость": "9 м", "Бонус": "+2" },
+        attrs: ["Сил +0", "Лов +4", "Тел +1", "Инт +1", "Муд +0", "Хар +2"],
+        role: "Срывает внимание, работает с толпой, быстро достает улики и добивает слабые цели.",
+        actions: [
+          ["Веер стали", "Атака до трех целей в пределах 12 м, отдельный бросок по каждой."],
+          ["Кувырок циркача", "Реакция: +5 к КЗ против атаки; при промахе может отступить на 3 м."],
+          ["Смех против страха", "Дает союзнику преимущество на Харизму, Мудрость или спасбросок против страха."],
+          ["Ульта: Смерть под аплодисменты", "1 раз за игру: атака с 3к20, при попадании крит и спасбросок Телосложения Сл 14 против оглушения."]
+        ],
+        scenes: ["площадь", "Сом", "Зазеркалье", "суд"]
+      },
+      {
+        id: "malasha-inokop",
+        type: "hero",
+        name: "Малаша-Инокопь",
+        subtitle: "Инженер, сапер, стрелок, мастер ловушек",
+        sigil: "М",
+        stats: { "ХП": "30", "КЗ": "14", "Скорость": "9 м", "Бонус": "+2" },
+        attrs: ["Сил +0", "Лов +3", "Тел +1", "Инт +3", "Муд +1", "Хар +0"],
+        role: "Доказывает подделку пломб, вскрывает механизмы, ставит контроль на поле боя.",
+        actions: [
+          ["Град шпилек", "Залп из трех болтов по одной цели, атака +5, урон 3к4 колющего."],
+          ["Силок на тварь", "Реакция: цель делает Ловкость Сл 13, при провале скорость 0 и опутана."],
+          ["Рука мастера", "Преимущество на проверку механизмов, замков, пломб, ловушек или конструкций."],
+          ["Ульта: Паучье гнездо", "Радиус 6 м: враги Ловкость Сл 14, провал 2к6 режущего, скорость вдвое ниже, зона труднопроходимая."]
+        ],
+        scenes: ["дом Семена", "пломбы", "архив", "суд"]
+      },
+      {
+        id: "agafya-travnitsa",
+        type: "hero",
+        name: "Агафья-Травница",
+        subtitle: "Алхимик, целитель, эксперт по ядам и мороку",
+        sigil: "А",
+        stats: { "ХП": "30", "КЗ": "13", "Скорость": "9 м", "Бонус": "+2" },
+        attrs: ["Сил -1", "Лов +1", "Тел +0", "Инт +4", "Муд +3", "Хар +0"],
+        role: "Доказывает физические признаки подавленной воли, лечит и тушит последствия боя.",
+        actions: [
+          ["Гремучая смесь", "Точка в пределах 12 м, радиус 3 м, Ловкость Сл 14; провал 3к6 огнем, успех половина."],
+          ["Настой живучести", "Стабилизирует умирающего до 1 ХП или лечит живого союзника на 2к8+4."],
+          ["Чистое заключение", "Преимущество на Медицину, Природу, Расследование или Интеллект по следам тела, крови, пыли, зерна, яда и морока."],
+          ["Ульта: Пробуждение прародителя", "Нежить, духи и зеркальные сущности в конусе 9 м: Мудрость Сл 15, провал бегство и уязвимость ко всем видам урона на 1 минуту."]
+        ],
+        scenes: ["тюрьма", "дом Семена", "архив", "суд"]
+      },
+      {
+        id: "varfolomei-molchalnik",
+        type: "hero",
+        name: "Брат Варфоломей-Молчальник",
+        subtitle: "Духовник, щит от страха, морока и иллюзий",
+        sigil: "В",
+        stats: { "ХП": "30", "КЗ": "14", "Скорость": "9 м", "Бонус": "+2" },
+        attrs: ["Сил +0", "Лов +0", "Тел +2", "Инт +1", "Муд +4", "Хар +1"],
+        role: "Держит группу против Зазеркалья, объясняет морок суду без паники.",
+        actions: [
+          ["Слово Отречения", "Дальняя атака 18 м, +6, урон 2к6 психического; снимает очарование, страх или иллюзию с цели."],
+          ["Круг Безмолвия", "Радиус 1.5 м: союзники с преимуществом на Мудрость и Харизму; нежить/духи Мудрость Сл 15 для входа."],
+          ["Точка тишины", "Преимущество на Религию, Мудрость или Проницательность против морока, страха и отражений."],
+          ["Ульта: Пробуждение Отсвета", "Союзники в радиусе 9 м прекращают страх, сон, очарование и иллюзии; получают сопротивление некротике и +1к4 лучевого по нежити/духам."]
+        ],
+        scenes: ["тюрьма", "Зазеркалье", "сердце зеркала", "суд"]
+      },
+      {
+        id: "saveliy-glukhoy-kolokol",
+        type: "hero",
+        name: "Савелий \"Глухой Колокол\"",
+        subtitle: "Танк, бывший тюремный десятник, защитник проходов",
+        sigil: "С",
+        stats: { "ХП": "36", "КЗ": "16", "Скорость": "9 м", "Бонус": "+2" },
+        attrs: ["Сил +3", "Лов +0", "Тел +3", "Инт +0", "Муд +2", "Хар +1"],
+        role: "Держит узкие места, ломает ложные признания и защищает Тихона.",
+        actions: [
+          ["Тюремный удар", "Атака +5, урон 1к8+3 дробящий; при попадании цель Сила Сл 13, провал: оттолкнута на 3 м или сбита с ног."],
+          ["Закрыть проход", "До начала следующего хода враги в пределах 1.5 м получают помеху на атаки не по Савелию; один союзник рядом +2 КЗ."],
+          ["Железный окрик", "Одна гуманоидная цель в 9 м: Мудрость Сл 13, провал - помеха на первую атаку следующего хода."],
+          ["Ульта: Глухой колокол", "Радиус 9 м: снимает испуг, дает временные 1к8+3 ХП, преимущество на Силу/Телосложение/Мудрость до конца следующего раунда."]
+        ],
+        scenes: ["тюрьма", "подземелье", "лестница", "суд"]
+      },
+      {
+        id: "tikhon-zharok",
+        type: "npc",
+        name: "Тихон Жарок",
+        subtitle: "Подсудимый гончар, орудие морока",
+        sigil: "Т",
+        stats: { "Роль": "подсудимый", "Сцена": "тюрьма/суд", "Доверие": "+1", "Риск": "петля" },
+        role: "Удар нанесла его рука, но воля была сломана. Главная задача группы - доказать это суду.",
+        actions: [
+          ["Ключевая реплика", "«Рука моя была. Мысль моя - нет»."],
+          ["Улика", "Ложное признание, голос Настасьи, признаки подавленной воли."],
+          ["Проверки", "Медицина Сл 12, Проницательность Сл 13, Мудрость/Религия Сл 13."]
+        ],
+        scenes: ["тюрьма", "суд", "зеркало"]
+      },
+      {
+        id: "ostapiy-krivets",
+        type: "npc",
+        name: "Остапий Кривец",
+        subtitle: "Помощник воеводы, интриган, бумажная власть",
+        sigil: "О",
+        hp: 32,
+        ac: 13,
+        stats: { "ХП": "32", "КЗ": "13", "Скорость": "9 м", "Сл": "13" },
+        role: "Главный злодей. Ведет зерновую схему, использует Судное Зеркало и пытается уничтожить улики.",
+        actions: [
+          ["Кинжал", "+4 к попаданию, 1к6+2."],
+          ["Бумага суда", "Пытается уничтожить улику; реакция героя Ловкость/Расследование Сл 13."],
+          ["Приказной голос", "Мудрость Сл 13, провал - цель не может атаковать Остапия до конца следующего хода."],
+          ["К боковой двери", "При половине ХП или доверии 5+ пытается уйти."]
+        ],
+        scenes: ["площадь", "архив", "суд"]
+      },
+      {
+        id: "voevoda-vorontsov",
+        type: "npc",
+        name: "Воевода Григорий Воронцов",
+        subtitle: "Старая власть, суровый и уставший судья",
+        sigil: "Г",
+        stats: { "Роль": "судья", "Сцена": "площадь/суд", "Доверие": "0-6", "Ключ": "порядок" },
+        role: "Не вор, но слеп к махинациям Остапия. Его можно развернуть к правде через вещь, свидетеля и объяснение.",
+        actions: [
+          ["Если нет доказательств", "«Слова ваши темные. Суду свет нужен»."],
+          ["Если есть книга", "«Остапий. Почему я этих чисел не видел?»"],
+          ["При доверии 5+", "Приказывает снять цепи с Тихона и закрыть двери."]
+        ],
+        scenes: ["ратуша", "суд"]
+      },
+      {
+        id: "lavrentiy-som",
+        type: "npc",
+        name: "Лаврентий Сом",
+        subtitle: "Купец-посредник зерновой схемы",
+        sigil: "Л",
+        stats: { "Роль": "свидетель", "Сцена": "склад", "Сл": "13/14", "Риск": "сбежит" },
+        role: "Знает про отдельные знаки на мешках и вторую книгу. Боится Остапия больше воеводы.",
+        actions: [
+          ["Обман Сл 13", "Если герои выдают себя за людей Остапия, проговаривается про вторую книгу."],
+          ["Запугивание Сл 14", "Становится слабым свидетелем."],
+          ["Малаша Сл 13", "Находит мешок с иной пломбой."]
+        ],
+        scenes: ["склад", "суд"]
+      },
+      {
+        id: "egor-klet",
+        type: "npc",
+        name: "Егор Клеть",
+        subtitle: "Тюремщик, знакомый Савелия",
+        sigil: "Е",
+        stats: { "Роль": "проводник", "Сцена": "тюрьма", "Ключ": "вода", "Сл": "12" },
+        role: "Видел, что Тихон говорит с водой и не ведет себя как обычный убийца.",
+        actions: [
+          ["Реплика Савелию", "«Ты людей ломанных видел. Этот сам сломался или его кто переломил?»"],
+          ["Помощь", "Дает минуту у камеры без Остапия."],
+          ["Резерв", "Подсказывает про люк и старый ход."]
+        ],
+        scenes: ["тюрьма", "подземелье"]
+      },
+      {
+        id: "matrona-ustinya",
+        type: "npc",
+        name: "Матрона Устинья",
+        subtitle: "Голос голодных деревень",
+        sigil: "У",
+        stats: { "Роль": "свидетель", "Сцена": "площадь", "Ключ": "зерно", "Риск": "толпа" },
+        role: "Говорит о зерне и пустых мешках. Помогает вывести игроков из тупика к Сому.",
+        actions: [
+          ["Крючок", "«Вы у мешков спросите, куда зерно делось»."],
+          ["Резервная улика", "Видела мешки с пломбами у Сома."],
+          ["Толпа", "Может поддержать героев, если те говорят о голоде."]
+        ],
+        scenes: ["площадь", "суд"]
+      },
+      {
+        id: "nastasya-zharok",
+        type: "npc",
+        name: "Настасья Жарок",
+        subtitle: "Жена Тихона, чей голос был украден",
+        sigil: "Н",
+        stats: { "Роль": "ключ к мороку", "Сцена": "резерв", "Улика": "голос", "Риск": "ложный образ" },
+        role: "Ее голос использован мороком, чтобы заставить Тихона ударить Семена.",
+        actions: [
+          ["Через Тихона", "Тихон слышал ее голос в момент убийства."],
+          ["Через воду", "Миска в тюрьме может повторить украденный голос."],
+          ["На суде", "Подтверждает, что не звала Тихона."]
+        ],
+        scenes: ["тюрьма", "суд", "Зазеркалье"]
+      },
+      {
+        id: "semen-rybtsev",
+        type: "npc",
+        name: "Семен Рыбцев",
+        subtitle: "Убитый младший писарь",
+        sigil: "С",
+        stats: { "Роль": "жертва", "Сцена": "дом", "Улика": "книга", "Ключ": "пломбы" },
+        role: "Нашел двойную зерновую книгу и хотел сделать Тихона свидетелем.",
+        actions: [
+          ["След", "Пустое место от пропавшей бумаги на столе."],
+          ["Реплика памяти", "«Тихон, очей не пяль!»"],
+          ["Связь", "Семен боялся приказных, а не Тихона."]
+        ],
+        scenes: ["дом Семена", "Зазеркалье"]
+      },
+      {
+        id: "praskovya",
+        type: "npc",
+        name: "Прасковья",
+        subtitle: "Соседка и свидетельница у дома Семена",
+        sigil: "П",
+        stats: { "Роль": "свидетель", "Сцена": "дом", "Истина": "страх", "Ложь": "Тихон один" },
+        role: "Дает одновременно полезную и неполную информацию: Семен боялся приказных, но Тихон пришел один.",
+        actions: [
+          ["Реплика", "«Если утром к воеводе не дойду, значит, бумага уже сильнее человека стала»."],
+          ["Истинный след", "Семен боялся приказных."],
+          ["Ложный след", "Она видела Тихона у дома и уверена, что он пришел один."]
+        ],
+        scenes: ["дом Семена"]
+      },
+      {
+        id: "whispering-shard",
+        type: "mob",
+        name: "Шепчущий осколок",
+        subtitle: "Слабый враг Зазеркалья, ломает порядок памяти",
+        sigil: "О",
+        hp: 10,
+        ac: 13,
+        stats: { "ХП": "10", "КЗ": "13", "Скорость": "полет 6 м", "Сл": "12/13" },
+        role: "Не убивает, а тянет время, сбивает события и мешает групповым проверкам.",
+        actions: [
+          ["Резаный шепот", "Дальняя атака 9 м, +4, урон 1к6 психического."],
+          ["Ложная фраза", "Мудрость Сл 12, провал - цель не помогает в групповой проверке до конца следующего хода."],
+          ["Сдвинуть событие", "Меняет местами два круга памяти; реакция героя Сл 13 отменяет."]
+        ],
+        scenes: ["бой З1", "Зазеркалье"]
+      },
+      {
+        id: "false-witness",
+        type: "mob",
+        name: "Лжесвидетель",
+        subtitle: "Миньон Ложного Пристава",
+        sigil: "Л",
+        hp: 14,
+        ac: 12,
+        stats: { "ХП": "14", "КЗ": "12", "Скорость": "9 м", "Эффект": "+2 Сл выхода" },
+        role: "Пока жив хотя бы один, проверки выхода из Зазеркалья сложнее.",
+        actions: [
+          ["Обвиняющий крик", "Дальняя атака 12 м, +4, урон 1к6 психического."],
+          ["Чужой голос", "Мудрость Сл 12, провал - помеха на следующую проверку против морока."],
+          ["Ложная подпись", "Пристав получает +2 КЗ против первой атаки до следующего хода."]
+        ],
+        scenes: ["бой З2", "Зазеркалье"]
+      },
+      {
+        id: "false-bailiff",
+        type: "mob",
+        name: "Ложный Пристав",
+        subtitle: "Мини-босс Зазеркалья, судебный морок",
+        sigil: "П",
+        hp: 45,
+        ac: 14,
+        stats: { "ХП": "45", "КЗ": "14", "Скорость": "9 м", "Сл": "13" },
+        role: "Блокирует выход, заверяет ложную улику и добавляет искажение времени.",
+        actions: [
+          ["Посох приговора", "+5, 1к8+2 дробящего + 1к4 психического."],
+          ["Именем суда", "Мудрость Сл 13, провал - цель не может приблизиться к выходу."],
+          ["Печать лжи", "Перезарядка 5-6: проверки выхода +2 Сл до конца раунда."],
+          ["Возражение", "Реакция против предъявления улики: Харизма или Мудрость Сл 13."]
+        ],
+        scenes: ["бой З2", "Зазеркалье"]
+      },
+      {
+        id: "condemned-shadow",
+        type: "mob",
+        name: "Тень приговоренного",
+        subtitle: "Сильный враг подземелья на лестнице",
+        sigil: "Т",
+        hp: 20,
+        ac: 13,
+        stats: { "ХП": "20", "КЗ": "13", "Скорость": "9 м", "Сл": "13" },
+        role: "Тянет героев вниз, гасит свет и режет отход.",
+        actions: [
+          ["Цепь вины", "+5, 1к8+2 некротического."],
+          ["Утащить вниз", "Сила/Атлетика Сл 13, провал - сдвиг на 3 м вниз и падение ничком."],
+          ["Погасить свет", "Гасит ближайшую свечу или фонарь."]
+        ],
+        scenes: ["бой П1", "подземелье"]
+      },
+      {
+        id: "ostapiy-guard",
+        type: "mob",
+        name: "Стражник Остапия",
+        subtitle: "Физический боец, держит проход и прикрывает бумаги",
+        sigil: "С",
+        hp: 24,
+        ac: 14,
+        stats: { "ХП": "24", "КЗ": "14", "Скорость": "9 м", "Сл": "13" },
+        role: "Закрывает проход, удерживает героев от улик, прикрывает побег Остапия.",
+        actions: [
+          ["Копье или дубина", "+5, 1к8+2."],
+          ["Прижать щитом", "Сила Сл 13, провал - цель не может пройти мимо без действия."],
+          ["Закрыть улику", "Взаимодействие с уликой требует сначала оттолкнуть стражника Сл 13."]
+        ],
+        scenes: ["архив", "суд"]
+      },
+      {
+        id: "archive-arsonist",
+        type: "mob",
+        name: "Поджигатель архива",
+        subtitle: "Сценическая угроза, уничтожает улики",
+        sigil: "П",
+        hp: 18,
+        ac: 13,
+        stats: { "ХП": "18", "КЗ": "13", "Скорость": "9 м", "Риск": "улика" },
+        role: "Его цель - сжечь и уйти, а не победить в бою.",
+        actions: [
+          ["Нож", "+4, 1к6+2."],
+          ["Искра в деле", "Если огонь не потушить до конца следующего раунда, улика уничтожена."],
+          ["Беги к приказному", "К концу 3 раунда пытается уйти к выходу."]
+        ],
+        scenes: ["бой П2", "архив"]
+      },
+      {
+        id: "archive-fire",
+        type: "mob",
+        name: "Огонь архива",
+        subtitle: "Опасная зона и таймер уничтожения улик",
+        sigil: "О",
+        stats: { "Урон": "1к6", "Тушение": "Сл 12", "Таймер": "2 раунда", "Тип": "зона" },
+        role: "Каждый раунд расширяется и повреждает улики. Это враг сцены, а не существо.",
+        actions: [
+          ["Расширение", "В конце раунда распространяется на 1 соседнюю клетку, если не тушат."],
+          ["Потушить", "Действие: Ловкость/Природа/Инструменты Сл 12."],
+          ["Улика", "1 раунд рядом - повреждена; 2 раунда - уничтожена или становится слабой."]
+        ],
+        scenes: ["бой П2", "архив"]
+      },
+      {
+        id: "mirror-grasp",
+        type: "mob",
+        name: "Зеркальная хватка",
+        subtitle: "Нечистый эффект Судного Зеркала в финале",
+        sigil: "З",
+        hp: 22,
+        ac: 12,
+        stats: { "ХП": "22", "КЗ": "12", "Скорость": "6 м", "Сл": "12/13" },
+        role: "Тянет Тихона и улики в отражение. Бьет по цели сцены, а не по слабому герою.",
+        actions: [
+          ["Холодное касание", "+5, 1к6+2 психического."],
+          ["Тянуть в отражение", "Сила Сл 12, провал - сдвиг на 3 м."],
+          ["Украсть улику", "Реакция героя Ловкость/Расследование Сл 13, иначе улика уходит в отражение."]
+        ],
+        scenes: ["бой 5", "суд"]
+      }
+    ];
+
+    const labels = { hero: "Герой", npc: "NPC", mob: "Моб" };
+    const groups = [
+      ["hero", "Герои"],
+      ["npc", "NPC и свидетели"],
+      ["mob", "Мобы и угрозы"]
+    ];
+
+    const state = { filter: "all", q: "" };
+
+    function cardText(card) {
+      return [
+        card.name,
+        card.subtitle,
+        card.role,
+        ...(card.attrs || []),
+        ...(card.scenes || []),
+        ...(card.actions || []).flat()
+      ].join(" ").toLowerCase();
+    }
+
+    function getHp(card) {
+      if (!card.hp) return null;
+      const key = "hp:" + card.id;
+      const saved = localStorage.getItem(key);
+      return saved === null ? card.hp : Math.max(0, Number(saved));
+    }
+
+    function setHp(card, next) {
+      const value = Math.max(0, Math.min(card.hp, next));
+      localStorage.setItem("hp:" + card.id, value);
+      render();
+    }
+
+    function renderCard(card) {
+      const hp = getHp(card);
+      const statEntries = Object.entries(card.stats || {});
+      const hpPct = card.hp ? Math.round((hp / card.hp) * 100) : 0;
+      const hpColor = hpPct <= 30 ? "var(--bad)" : hpPct <= 60 ? "var(--warn)" : "var(--good)";
+      const attrs = (card.attrs || []).map(x => `<span class="chip">${x}</span>`).join("");
+      const scenes = (card.scenes || []).map(x => `<span class="chip">${x}</span>`).join("");
+      const actions = (card.actions || []).map(([name, text]) => `<div class="action"><b>${name}.</b> ${text}</div>`).join("");
+      const stats = statEntries.map(([k, v]) => `<div class="stat"><span>${k}</span><strong>${v}</strong></div>`).join("");
+      const hpBlock = card.hp ? `
+        <div class="hp-controls">
+          <button class="hp-btn" type="button" data-hp="${card.id}" data-delta="-1">-</button>
+          <div class="hpbar" title="${hp}/${card.hp}"><div class="hpfill" style="width:${hpPct}%;background:${hpColor}"></div></div>
+          <button class="hp-btn" type="button" data-hp="${card.id}" data-delta="1">+</button>
+        </div>` : "";
+
+      return `
+        <article class="card" id="${card.id}" data-type="${card.type}">
+          <div class="card-head">
+            <div class="sigil">${card.sigil}</div>
+            <div>
+              <h3>${card.name}</h3>
+              <div class="subtitle">${card.subtitle}</div>
+            </div>
+            <div class="type">${labels[card.type]}</div>
+          </div>
+          <div class="stats">${stats}</div>
+          ${hpBlock}
+          <div class="block"><h4>Роль</h4><p>${card.role}</p></div>
+          ${attrs ? `<div class="block"><h4>Характеристики</h4><div class="chips">${attrs}</div></div>` : ""}
+          <div class="block"><h4>Действия / улики</h4><div class="actions">${actions}</div></div>
+          ${scenes ? `<div class="block"><h4>Сцены</h4><div class="chips">${scenes}</div></div>` : ""}
+          <div class="card-foot">
+            <span>#${card.id}</span>
+            <button class="copy" type="button" data-copy="${card.id}">Скопировать ссылку</button>
+          </div>
+        </article>
+      `;
+    }
+
+    function render() {
+      const content = document.getElementById("content");
+      const q = state.q.trim().toLowerCase();
+      const filtered = cards.filter(card => {
+        const typeOk = state.filter === "all" || card.type === state.filter;
+        const searchOk = !q || cardText(card).includes(q);
+        return typeOk && searchOk;
+      });
+
+      content.innerHTML = groups.map(([type, title]) => {
+        const items = filtered.filter(card => card.type === type);
+        if (!items.length) return "";
+        return `
+          <section class="section">
+            <h2>${title}</h2>
+            <div class="grid">${items.map(renderCard).join("")}</div>
+          </section>
+        `;
+      }).join("") || `<p class="lead">Ничего не найдено.</p>`;
+
+      document.querySelectorAll("[data-hp]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const card = cards.find(x => x.id === btn.dataset.hp);
+          setHp(card, getHp(card) + Number(btn.dataset.delta));
+        });
+      });
+
+      document.querySelectorAll("[data-copy]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const url = location.origin + location.pathname + "#" + btn.dataset.copy;
+          await navigator.clipboard.writeText(url);
+          btn.textContent = "Ссылка скопирована";
+          setTimeout(() => btn.textContent = "Скопировать ссылку", 1200);
+        });
+      });
+    }
+
+    document.getElementById("search").addEventListener("input", event => {
+      state.q = event.target.value;
+      render();
+    });
+
+    document.querySelectorAll(".filter").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach(x => x.classList.remove("active"));
+        btn.classList.add("active");
+        state.filter = btn.dataset.filter;
+        render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
