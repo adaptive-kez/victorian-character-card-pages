@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Яшка-Бросок — Пять дней до петли</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
+
+    :root {
+      --font-serif: "Cinzel", Georgia, serif;
+      --font-sans: Inter, Arial, Helvetica, sans-serif;
+      --color-background-primary: #f4f1e9;
+      --color-background-secondary: #ebe6da;
+      --color-panel: #fffdf7;
+      --color-text-primary: #24231f;
+      --color-text-secondary: #6e6a5f;
+      --color-border-primary: #2c2c2a;
+      --color-border-secondary: #8f8a7e;
+      --color-border-tertiary: #d5cec0;
+      --color-accent: #b8483f;
+      --color-warn: #ba7517;
+      --color-danger: #b8483f;
+      --border-radius-md: 8px;
+      --border-radius-lg: 12px;
+      --shadow: 0 24px 60px rgba(36, 35, 31, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(244, 241, 233, 0.86), rgba(244, 241, 233, 0.86)),
+        radial-gradient(circle at top left, rgba(184, 72, 63, 0.10), transparent 40%),
+        var(--color-background-primary);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.45;
+      display: grid;
+      place-items: start center;
+      padding: 24px;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .sheet {
+      width: min(720px, 100%);
+      background: var(--color-panel);
+      border: 0.5px solid var(--color-border-secondary);
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      box-shadow: 0 18px 44px rgba(36, 35, 31, 0.08);
+    }
+
+    .sheet-title {
+      margin-bottom: 1.25rem;
+      color: var(--color-text-secondary);
+      font-size: 11px;
+      font-family: var(--font-serif);
+      letter-spacing: 0.08em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .header {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 0.5px solid var(--color-border-tertiary);
+    }
+
+    .avatar {
+      width: 68px;
+      height: 68px;
+      flex: 0 0 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f4f1e9;
+      background: #b8483f;
+      border: 0.5px solid var(--color-border-secondary);
+      border-radius: 50%;
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .header-info { min-width: 0; flex: 1; }
+
+    .char-name {
+      margin-bottom: 4px;
+      color: var(--color-text-primary);
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .char-sub {
+      margin-bottom: 8px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+    }
+
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .badge {
+      padding: 3px 10px;
+      color: var(--color-text-secondary);
+      background: var(--color-background-secondary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: 20px;
+      font-size: 11px;
+      font-family: var(--font-serif);
+      letter-spacing: 0.04em;
+    }
+
+    .section-title {
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      color: var(--color-text-secondary);
+      border-bottom: 0.5px solid var(--color-border-tertiary);
+      font-size: 10px;
+      font-family: var(--font-serif);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Vitals */
+    .vitals {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+
+    .vital {
+      padding: 12px;
+      text-align: center;
+      background: var(--color-background-secondary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-md);
+    }
+
+    .vital-label {
+      margin-bottom: 6px;
+      color: var(--color-text-secondary);
+      font-size: 10px;
+      font-family: var(--font-serif);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .vital-val {
+      color: var(--color-text-primary);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .vital-max { color: var(--color-text-secondary); font-size: 13px; }
+
+    .hp-bar {
+      height: 4px;
+      margin-top: 8px;
+      overflow: hidden;
+      background: var(--color-border-tertiary);
+      border-radius: 2px;
+    }
+
+    .hp-fill {
+      height: 100%;
+      background: var(--color-accent);
+      border-radius: 2px;
+      transition: width 0.25s ease, background 0.25s ease;
+    }
+
+    .hp-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hp-btn {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-primary);
+      background: transparent;
+      border: 0.5px solid var(--color-border-secondary);
+      border-radius: 50%;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .hp-btn:hover { background: var(--color-panel); }
+
+    /* Attributes */
+    .attrs {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 1.25rem;
+    }
+
+    .attr {
+      padding: 10px 6px;
+      text-align: center;
+      background: var(--color-background-secondary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-md);
+    }
+
+    .attr-name {
+      margin-bottom: 4px;
+      color: var(--color-text-secondary);
+      font-size: 9px;
+      font-family: var(--font-serif);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .attr-val {
+      color: var(--color-text-primary);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .attr-mod { color: var(--color-text-secondary); font-size: 11px; }
+
+    /* Two column layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Skills / weapons */
+    .skills, .inv { display: grid; gap: 6px; margin-bottom: 1.25rem; }
+
+    .skill {
+      display: grid;
+      grid-template-columns: 10px minmax(120px, 0.4fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-md);
+      font-size: 13px;
+      transition: background 0.15s ease;
+    }
+
+    .skill:hover { background: var(--color-background-secondary); }
+
+    .skill-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--color-border-secondary);
+      border-radius: 50%;
+    }
+
+    .skill-dot.proficient { background: var(--color-accent); }
+
+    .skill-name { color: var(--color-text-primary); overflow-wrap: break-word; }
+
+    .skill-bonus {
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      text-align: left;
+      overflow-wrap: break-word;
+    }
+
+    /* Inventory */
+    .inv-item {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      align-items: start;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-md);
+      font-size: 13px;
+    }
+
+    .inv-icon {
+      color: var(--color-text-secondary);
+      font-size: 16px;
+      text-align: center;
+      padding-top: 1px;
+    }
+
+    .inv-name { color: var(--color-text-primary); overflow-wrap: break-word; }
+
+    .inv-note {
+      color: var(--color-text-secondary);
+      font-size: 11px;
+      overflow-wrap: break-word;
+      margin-top: 2px;
+    }
+
+    /* Abilities */
+    .ability {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .ability-name {
+      color: var(--color-text-primary);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .ability-type {
+      font-size: 10px;
+      color: var(--color-text-secondary);
+      font-family: var(--font-serif);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .ability-desc {
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      overflow-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .ability-uses {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 2px 8px;
+      background: var(--color-background-secondary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: 12px;
+      font-size: 10px;
+      font-family: var(--font-serif);
+      color: var(--color-text-secondary);
+      letter-spacing: 0.04em;
+    }
+
+    /* Uses tracker */
+    .uses-tracker {
+      display: flex;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .use-pip {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-border-secondary);
+      background: var(--color-accent);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .use-pip.spent {
+      background: transparent;
+    }
+
+    /* ULTA */
+    .ulta-card {
+      margin-bottom: 1.25rem;
+      padding: 14px;
+      background: linear-gradient(135deg, rgba(184,72,63,0.07), rgba(186,117,23,0.05));
+      border: 1px solid rgba(184,72,63,0.25);
+      border-left: 3px solid var(--color-accent);
+      border-radius: var(--border-radius-md);
+    }
+
+    .ulta-label {
+      font-size: 9px;
+      font-family: var(--font-serif);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 4px;
+    }
+
+    .ulta-name {
+      font-size: 15px;
+      font-weight: 700;
+      font-family: var(--font-serif);
+      color: var(--color-text-primary);
+      margin-bottom: 6px;
+    }
+
+    .ulta-desc {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Notes */
+    .notes-box {
+      margin-bottom: 1.25rem;
+      padding: 12px;
+      color: var(--color-text-secondary);
+      background: var(--color-background-secondary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-left: 3px solid #888780;
+      border-radius: var(--border-radius-md);
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* Advantages */
+    .adv-list {
+      margin-bottom: 1.25rem;
+      display: grid;
+      gap: 4px;
+    }
+
+    .adv-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 6px 10px;
+      border: 0.5px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-md);
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      transition: background 0.15s ease;
+    }
+
+    .adv-item:hover { background: var(--color-background-secondary); }
+
+    .adv-icon { flex: 0 0 auto; font-size: 14px; }
+
+    /* Tips */
+    .tips-list {
+      margin-bottom: 1.25rem;
+      display: grid;
+      gap: 6px;
+    }
+
+    .tip-item {
+      padding: 8px 12px;
+      background: var(--color-background-secondary);
+      border: 0.5px solid var(--color-border-tertiary);
+      border-left: 3px solid var(--color-warn);
+      border-radius: var(--border-radius-md);
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 0.5px solid var(--color-border-tertiary);
+    }
+
+    .footer-hint {
+      color: var(--color-text-secondary);
+      font-size: 11px;
+      font-family: var(--font-serif);
+      letter-spacing: 0.04em;
+    }
+
+    .export-date {
+      color: var(--color-text-secondary);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 620px) {
+      .attrs { grid-template-columns: repeat(3, 1fr); }
+      .two-col { grid-template-columns: 1fr; }
+      .skill { grid-template-columns: 1fr; }
+      .skill-dot { display: none; }
+    }
+
+    @media print {
+      body { background: #fff; padding: 10px; }
+      .hp-controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <article class="sheet">
+
+    <div class="sheet-title">Пять дней до петли · Карточка игрока</div>
+
+    <div class="header">
+      <div class="avatar">ЯБ</div>
+      <div class="header-info">
+        <div class="char-name">Яшка-Бросок</div>
+        <div class="char-sub">Ловкач · Дальний боец · Мастер толпы и крыш</div>
+        <div class="badges">
+          <span class="badge">Ловкость +4</span>
+          <span class="badge">Харизма +2</span>
+          <span class="badge">Бонус +2</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vitals -->
+    <div class="vitals">
+      <div class="vital">
+        <div class="vital-label">Здоровье</div>
+        <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
+          <span class="vital-val hp-val">30</span>
+          <span class="vital-max">/ <span class="hp-max">30</span></span>
+        </div>
+        <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
+        <div class="hp-controls">
+          <button class="hp-btn" type="button" onclick="changeHP(this,-1)" aria-label="Уменьшить HP">−</button>
+          <span style="font-size:11px;color:var(--color-text-secondary)">HP</span>
+          <button class="hp-btn" type="button" onclick="changeHP(this,1)" aria-label="Увеличить HP">+</button>
+        </div>
+      </div>
+      <div class="vital">
+        <div class="vital-label">Класс доспеха</div>
+        <div class="vital-val">14</div>
+        <div class="vital-max">Лёгкая кожа</div>
+      </div>
+      <div class="vital">
+        <div class="vital-label">Скорость</div>
+        <div class="vital-val">9 м</div>
+        <div class="vital-max">Бонус +2</div>
+      </div>
+    </div>
+
+    <!-- Attributes -->
+    <div class="section-title">Характеристики</div>
+    <div class="attrs">
+      <div class="attr">
+        <div class="attr-name">Сила</div>
+        <div class="attr-val">10</div>
+        <div class="attr-mod">+0</div>
+      </div>
+      <div class="attr">
+        <div class="attr-name">Ловкость</div>
+        <div class="attr-val">18</div>
+        <div class="attr-mod">+4</div>
+      </div>
+      <div class="attr">
+        <div class="attr-name">Телос.</div>
+        <div class="attr-val">12</div>
+        <div class="attr-mod">+1</div>
+      </div>
+      <div class="attr">
+        <div class="attr-name">Интел.</div>
+        <div class="attr-val">12</div>
+        <div class="attr-mod">+1</div>
+      </div>
+      <div class="attr">
+        <div class="attr-name">Мудрость</div>
+        <div class="attr-val">10</div>
+        <div class="attr-mod">+0</div>
+      </div>
+      <div class="attr">
+        <div class="attr-name">Харизма</div>
+        <div class="attr-val">14</div>
+        <div class="attr-mod">+2</div>
+      </div>
+    </div>
+
+    <!-- Saving throws & Weapons -->
+    <div class="two-col">
+      <div>
+        <div class="section-title">Спасброски</div>
+        <div class="skills">
+          <button class="skill" type="button" onclick="toggleSkill(this)">
+            <span class="skill-dot proficient"></span>
+            <span class="skill-name">Ловкость</span>
+            <span class="skill-bonus">+6</span>
+          </button>
+          <button class="skill" type="button" onclick="toggleSkill(this)">
+            <span class="skill-dot proficient"></span>
+            <span class="skill-name">Харизма</span>
+            <span class="skill-bonus">+4</span>
+          </button>
+        </div>
+
+        <div class="section-title">Оружие</div>
+        <div class="inv">
+          <div class="inv-item">
+            <span class="inv-icon">🗡</span>
+            <div>
+              <div class="inv-name">Метательный кинжал / топорик</div>
+              <div class="inv-note">Атака +6 · Урон 1к4+4 · Дист. 6/18 м</div>
+            </div>
+          </div>
+          <div class="inv-item">
+            <span class="inv-icon">🔪</span>
+            <div>
+              <div class="inv-name">Нож в рукаве</div>
+              <div class="inv-note">Атака +6 · Урон 1к4+4 · Можно скрытно</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Инвентарь</div>
+        <div class="inv">
+          <div class="inv-item"><span class="inv-icon">🗡</span><div><div class="inv-name">10 метательных кинжалов/топориков</div></div></div>
+          <div class="inv-item"><span class="inv-icon">🧥</span><div><div class="inv-name">Лёгкая кожаная броня</div></div></div>
+          <div class="inv-item"><span class="inv-icon">🔑</span><div><div class="inv-name">Набор отмычек</div></div></div>
+          <div class="inv-item"><span class="inv-icon">⚗</span><div><div class="inv-name">Кислота в пузырьке</div></div></div>
+          <div class="inv-item"><span class="inv-icon">🎭</span><div><div class="inv-name">Пёстрый скомороший платок</div></div></div>
+          <div class="inv-item"><span class="inv-icon">🪞</span><div><div class="inv-name">Маленькое зеркальце с трещиной</div></div></div>
+          <div class="inv-item"><span class="inv-icon">💰</span><div><div class="inv-name">Мешочек медных монет</div><div class="inv-note">Для отвлечения толпы</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Abilities -->
+    <div class="section-title">Умения</div>
+    <div class="inv" style="margin-bottom:1.25rem">
+
+      <div class="inv-item ability" style="display:block;padding:10px 14px;">
+        <div class="ability-type">⚔️ Атакующее</div>
+        <div class="ability-name">Веер стали</div>
+        <div class="ability-desc">Действие. Атакует до 3 целей в пределах 12 м — отдельный бросок по каждой. Урон: стандартный урон оружия.</div>
+        <div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:6px;margin-bottom:3px;font-family:var(--font-serif);text-transform:uppercase;letter-spacing:0.05em">Использований (1 за короткий отдых)</div>
+          <div class="uses-tracker">
+            <div class="use-pip" onclick="togglePip(this)" title="Использование 1"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-item ability" style="display:block;padding:10px 14px;">
+        <div class="ability-type">🛡️ Защитное · Реакция</div>
+        <div class="ability-name">Кувырок циркача</div>
+        <div class="ability-desc">Когда по Яшке попали атакой. Получает +5 к КЗ против этой атаки. Если промахнулся — может отступить на 3 м без провоцирования атак.</div>
+        <div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:6px;margin-bottom:3px;font-family:var(--font-serif);text-transform:uppercase;letter-spacing:0.05em">Использований (3 за игру)</div>
+          <div class="uses-tracker">
+            <div class="use-pip" onclick="togglePip(this)"></div>
+            <div class="use-pip" onclick="togglePip(this)"></div>
+            <div class="use-pip" onclick="togglePip(this)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-item ability" style="display:block;padding:10px 14px;">
+        <div class="ability-type">💬 Социальное</div>
+        <div class="ability-name">Смех против страха</div>
+        <div class="ability-desc">Действие вне боя или бонусная заявка. Ломает напряжение трюком, шуткой или дерзкой репликой. Один союзник получает преимущество на следующую проверку Харизмы, Мудрости или спасбросок против страха.</div>
+        <div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:6px;margin-bottom:3px;font-family:var(--font-serif);text-transform:uppercase;letter-spacing:0.05em">Использований (2 за игру)</div>
+          <div class="uses-tracker">
+            <div class="use-pip" onclick="togglePip(this)"></div>
+            <div class="use-pip" onclick="togglePip(this)"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Ulta -->
+    <div class="ulta-card">
+      <div class="ulta-label">💥 Ульта · 1 раз за игру</div>
+      <div class="ulta-name">Смерть под аплодисменты</div>
+      <div class="ulta-desc">Одна атака метательным оружием с тройным преимуществом: бросает 3к20 и выбирает лучший результат. При попадании атака критическая — кости урона удваиваются. Цель делает спасбросок Телосложения <strong>Сл 14</strong>. При провале — оглушена до конца своего следующего хода.</div>
+      <div class="uses-tracker" style="margin-top:8px">
+        <div class="use-pip" onclick="togglePip(this)" style="background:var(--color-accent);border-color:var(--color-accent)"></div>
+      </div>
+    </div>
+
+    <!-- Advantages -->
+    <div class="section-title">Преимущества в этом приключении</div>
+    <div class="adv-list">
+      <div class="adv-item"><span class="adv-icon">🎪</span><span>Отвлекает толпу на площади</span></div>
+      <div class="adv-item"><span class="adv-icon">😄</span><span>Разговаривает с простыми людьми через шутку или представление</span></div>
+      <div class="adv-item"><span class="adv-icon">🏠</span><span>Лезет по крышам, лавкам, балкам, судейским скамьям</span></div>
+      <div class="adv-item"><span class="adv-icon">📜</span><span>Ворует накладную или ключ у приказчика</span></div>
+      <div class="adv-item"><span class="adv-icon">🪞</span><span>В Зазеркалье спорит с отражением через игру, маску или насмешку</span></div>
+      <div class="adv-item"><span class="adv-icon">⚖️</span><span>На суде удерживает толпу от крика «казнить»</span></div>
+    </div>
+
+    <!-- Tips -->
+    <div class="section-title">Подсказки игроку</div>
+    <div class="tips-list">
+      <div class="tip-item">🛒 <strong>Купец Сом:</strong> попробуй отвлечь приказчика и вытащить бумагу.</div>
+      <div class="tip-item">🪞 <strong>Зазеркалье:</strong> не бей первым — сначала назови ложь смешной.</div>
+      <div class="tip-item">⚖️ <strong>Финальный суд:</strong> ты можешь спасти доверие толпы.</div>
+    </div>
+
+    <!-- Story -->
+    <div class="section-title">История</div>
+    <div class="notes-box">Был скоморохом и метальщиком в бродячем круге. После резни, рабства и мести его нашла Опричнина. Теперь трюки не для потехи: отвлекает стражу, режет по слабым местам, выводит людей на разговор и делает так, чтобы враг смотрел не туда.</div>
+
+    <div class="footer">
+      <span class="footer-hint">HP меняется кнопками · пипки умений кликабельны</span>
+      <span class="export-date">Пять дней до петли · 2026</span>
+    </div>
+
+  </article>
+
+  <script>
+    function changeHP(button, delta) {
+      const vital = button.closest(".vital");
+      const valueNode = vital.querySelector(".hp-val");
+      const maxNode = vital.querySelector(".hp-max");
+      const fill = vital.querySelector(".hp-fill");
+      const max = Math.max(1, parseInt(maxNode.textContent, 10) || 1);
+      const next = Math.max(0, Math.min(max, (parseInt(valueNode.textContent, 10) || 0) + delta));
+      valueNode.textContent = next;
+      const pct = next / max;
+      fill.style.width = Math.round(pct * 100) + "%";
+      fill.style.background = pct > 0.5 ? "#b8483f" : pct > 0.25 ? "#ba7517" : "#8b0000";
+    }
+    function toggleSkill(button) {
+      button.querySelector(".skill-dot").classList.toggle("proficient");
+    }
+    function togglePip(pip) {
+      pip.classList.toggle("spent");
+    }
+  </script>
+</body>
+</html>

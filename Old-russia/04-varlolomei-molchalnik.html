@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Брат Варфоломей-Молчальник — Пять дней до петли</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
+
+    :root {
+      --font-serif: "Cinzel", Georgia, serif;
+      --font-sans: Inter, Arial, Helvetica, sans-serif;
+      --color-background-primary: #f4f1e9;
+      --color-background-secondary: #ebe6da;
+      --color-panel: #fffdf7;
+      --color-text-primary: #24231f;
+      --color-text-secondary: #6e6a5f;
+      --color-border-primary: #2c2c2a;
+      --color-border-secondary: #8f8a7e;
+      --color-border-tertiary: #d5cec0;
+      --color-accent: #6b5e9e;
+      --color-warn: #ba7517;
+      --color-danger: #b8483f;
+      --border-radius-md: 8px;
+      --border-radius-lg: 12px;
+      --shadow: 0 24px 60px rgba(36, 35, 31, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(244, 241, 233, 0.86), rgba(244, 241, 233, 0.86)),
+        radial-gradient(circle at top left, rgba(107, 94, 158, 0.10), transparent 40%),
+        var(--color-background-primary);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.45;
+      display: grid;
+      place-items: start center;
+      padding: 24px;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .sheet { width: min(720px, 100%); background: var(--color-panel); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-lg); padding: 1.5rem; box-shadow: 0 18px 44px rgba(36, 35, 31, 0.08); }
+    .sheet-title { margin-bottom: 1.25rem; color: var(--color-text-secondary); font-size: 11px; font-family: var(--font-serif); letter-spacing: 0.08em; text-align: center; text-transform: uppercase; }
+    .header { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+    .avatar { width: 68px; height: 68px; flex: 0 0 68px; display: flex; align-items: center; justify-content: center; color: #f4f1e9; background: #6b5e9e; border: 0.5px solid var(--color-border-secondary); border-radius: 50%; font-family: var(--font-serif); font-size: 24px; font-weight: 700; }
+    .header-info { min-width: 0; flex: 1; }
+    .char-name { margin-bottom: 4px; color: var(--color-text-primary); font-family: var(--font-serif); font-size: 22px; font-weight: 700; line-height: 1.2; }
+    .char-sub { margin-bottom: 8px; color: var(--color-text-secondary); font-size: 13px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge { padding: 3px 10px; color: var(--color-text-secondary); background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: 20px; font-size: 11px; font-family: var(--font-serif); letter-spacing: 0.04em; }
+    .section-title { margin-bottom: 10px; padding-bottom: 6px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 10px; font-family: var(--font-serif); letter-spacing: 0.08em; text-transform: uppercase; }
+    .vitals { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.25rem; }
+    .vital { padding: 12px; text-align: center; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); }
+    .vital-label { margin-bottom: 6px; color: var(--color-text-secondary); font-size: 10px; font-family: var(--font-serif); letter-spacing: 0.06em; text-transform: uppercase; }
+    .vital-val { color: var(--color-text-primary); font-size: 26px; font-weight: 700; line-height: 1; }
+    .vital-max { color: var(--color-text-secondary); font-size: 13px; }
+    .hp-bar { height: 4px; margin-top: 8px; overflow: hidden; background: var(--color-border-tertiary); border-radius: 2px; }
+    .hp-fill { height: 100%; background: var(--color-accent); border-radius: 2px; transition: width 0.25s ease, background 0.25s ease; }
+    .hp-controls { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; }
+    .hp-btn { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; color: var(--color-text-primary); background: transparent; border: 0.5px solid var(--color-border-secondary); border-radius: 50%; font-size: 18px; line-height: 1; }
+    .hp-btn:hover { background: var(--color-panel); }
+    .attrs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-bottom: 1.25rem; }
+    .attr { padding: 10px 6px; text-align: center; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); }
+    .attr-name { margin-bottom: 4px; color: var(--color-text-secondary); font-size: 9px; font-family: var(--font-serif); letter-spacing: 0.04em; text-transform: uppercase; }
+    .attr-val { color: var(--color-text-primary); font-size: 18px; font-weight: 700; }
+    .attr-mod { color: var(--color-text-secondary); font-size: 11px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+    .skills, .inv { display: grid; gap: 6px; margin-bottom: 1.25rem; }
+    .skill { display: grid; grid-template-columns: 10px minmax(120px, 0.4fr) minmax(0, 1fr); align-items: center; gap: 8px; padding: 7px 10px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); font-size: 13px; transition: background 0.15s ease; }
+    .skill:hover { background: var(--color-background-secondary); }
+    .skill-dot { width: 10px; height: 10px; background: var(--color-border-secondary); border-radius: 50%; }
+    .skill-dot.proficient { background: var(--color-accent); }
+    .skill-name { color: var(--color-text-primary); overflow-wrap: break-word; }
+    .skill-bonus { color: var(--color-text-secondary); font-size: 12px; text-align: left; overflow-wrap: break-word; }
+    .inv-item { display: grid; grid-template-columns: 24px minmax(0, 1fr); align-items: start; gap: 10px; padding: 8px 12px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); font-size: 13px; }
+    .inv-icon { color: var(--color-text-secondary); font-size: 16px; text-align: center; padding-top: 1px; }
+    .inv-name { color: var(--color-text-primary); overflow-wrap: break-word; }
+    .inv-note { color: var(--color-text-secondary); font-size: 11px; overflow-wrap: break-word; margin-top: 2px; }
+    .ability-type { font-size: 10px; color: var(--color-text-secondary); font-family: var(--font-serif); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 2px; }
+    .ability-name { color: var(--color-text-primary); font-size: 13px; font-weight: 700; }
+    .ability-desc { color: var(--color-text-secondary); font-size: 12px; overflow-wrap: break-word; line-height: 1.5; }
+    .uses-tracker { display: flex; gap: 5px; margin-top: 5px; }
+    .use-pip { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--color-border-secondary); background: var(--color-accent); cursor: pointer; transition: background 0.15s ease; }
+    .use-pip.spent { background: transparent; }
+    .ulta-card { margin-bottom: 1.25rem; padding: 14px; background: linear-gradient(135deg, rgba(107,94,158,0.07), rgba(186,117,23,0.05)); border: 1px solid rgba(107,94,158,0.25); border-left: 3px solid var(--color-accent); border-radius: var(--border-radius-md); }
+    .ulta-label { font-size: 9px; font-family: var(--font-serif); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 4px; }
+    .ulta-name { font-size: 15px; font-weight: 700; font-family: var(--font-serif); color: var(--color-text-primary); margin-bottom: 6px; }
+    .ulta-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+    .notes-box { margin-bottom: 1.25rem; padding: 12px; color: var(--color-text-secondary); background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-left: 3px solid #888780; border-radius: var(--border-radius-md); font-size: 13px; font-style: italic; line-height: 1.7; }
+    .adv-list { margin-bottom: 1.25rem; display: grid; gap: 4px; }
+    .adv-item { display: flex; gap: 8px; align-items: flex-start; padding: 6px 10px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); font-size: 12px; color: var(--color-text-secondary); transition: background 0.15s ease; }
+    .adv-item:hover { background: var(--color-background-secondary); }
+    .adv-icon { flex: 0 0 auto; font-size: 14px; }
+    .tips-list { margin-bottom: 1.25rem; display: grid; gap: 6px; }
+    .tip-item { padding: 8px 12px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-left: 3px solid var(--color-warn); border-radius: var(--border-radius-md); font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+    .footer { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding-top: 1rem; border-top: 0.5px solid var(--color-border-tertiary); }
+    .footer-hint { color: var(--color-text-secondary); font-size: 11px; font-family: var(--font-serif); letter-spacing: 0.04em; }
+    .export-date { color: var(--color-text-secondary); font-size: 11px; white-space: nowrap; }
+
+    /* Special banner for Varf's immunity */
+    .special-banner {
+      padding: 8px 12px;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, rgba(107,94,158,0.08), transparent);
+      border: 1px solid rgba(107,94,158,0.2);
+      border-left: 3px solid var(--color-accent);
+      border-radius: var(--border-radius-md);
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    @media (max-width: 620px) { .attrs { grid-template-columns: repeat(3, 1fr); } .two-col { grid-template-columns: 1fr; } .skill { grid-template-columns: 1fr; } .skill-dot { display: none; } }
+    @media print { body { background: #fff; padding: 10px; } .hp-controls { display: none; } }
+  </style>
+</head>
+<body>
+  <article class="sheet">
+
+    <div class="sheet-title">Пять дней до петли · Карточка игрока</div>
+
+    <div class="header">
+      <div class="avatar">ВМ</div>
+      <div class="header-info">
+        <div class="char-name">Брат Варфоломей-Молчальник</div>
+        <div class="char-sub">Духовник · Щит от морока · Чистильщик статусов</div>
+        <div class="badges">
+          <span class="badge">Мудрость +4</span>
+          <span class="badge">Телос. +2</span>
+          <span class="badge">Харизма +1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Special trait -->
+    <div class="special-banner">
+      ✨ <strong>Особенность:</strong> Преимущество на все спасброски против очарования, страха и иллюзий.
+    </div>
+
+    <!-- Vitals -->
+    <div class="vitals">
+      <div class="vital">
+        <div class="vital-label">Здоровье</div>
+        <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
+          <span class="vital-val hp-val">30</span>
+          <span class="vital-max">/ <span class="hp-max">30</span></span>
+        </div>
+        <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
+        <div class="hp-controls">
+          <button class="hp-btn" type="button" onclick="changeHP(this,-1)" aria-label="Уменьшить HP">−</button>
+          <span style="font-size:11px;color:var(--color-text-secondary)">HP</span>
+          <button class="hp-btn" type="button" onclick="changeHP(this,1)" aria-label="Увеличить HP">+</button>
+        </div>
+      </div>
+      <div class="vital">
+        <div class="vital-label">Класс доспеха</div>
+        <div class="vital-val">14</div>
+        <div class="vital-max">Ряса с узлами</div>
+      </div>
+      <div class="vital">
+        <div class="vital-label">Скорость</div>
+        <div class="vital-val">9 м</div>
+        <div class="vital-max">Бонус +2</div>
+      </div>
+    </div>
+
+    <!-- Attributes -->
+    <div class="section-title">Характеристики</div>
+    <div class="attrs">
+      <div class="attr"><div class="attr-name">Сила</div><div class="attr-val">10</div><div class="attr-mod">+0</div></div>
+      <div class="attr"><div class="attr-name">Ловкость</div><div class="attr-val">10</div><div class="attr-mod">+0</div></div>
+      <div class="attr"><div class="attr-name">Телос.</div><div class="attr-val">14</div><div class="attr-mod">+2</div></div>
+      <div class="attr"><div class="attr-name">Интел.</div><div class="attr-val">12</div><div class="attr-mod">+1</div></div>
+      <div class="attr"><div class="attr-name">Мудрость</div><div class="attr-val">18</div><div class="attr-mod">+4</div></div>
+      <div class="attr"><div class="attr-name">Харизма</div><div class="attr-val">12</div><div class="attr-mod">+1</div></div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="section-title">Спасброски</div>
+        <div class="skills">
+          <button class="skill" type="button" onclick="toggleSkill(this)">
+            <span class="skill-dot proficient"></span>
+            <span class="skill-name">Мудрость</span>
+            <span class="skill-bonus">+6</span>
+          </button>
+          <button class="skill" type="button" onclick="toggleSkill(this)">
+            <span class="skill-dot proficient"></span>
+            <span class="skill-name">Телосложение</span>
+            <span class="skill-bonus">+4</span>
+          </button>
+          <button class="skill" type="button" onclick="toggleSkill(this)">
+            <span class="skill-dot proficient"></span>
+            <span class="skill-name">Харизма</span>
+            <span class="skill-bonus">+3</span>
+          </button>
+        </div>
+
+        <div class="section-title">Оружие</div>
+        <div class="inv">
+          <div class="inv-item">
+            <span class="inv-icon">🪄</span>
+            <div>
+              <div class="inv-name">Посох</div>
+              <div class="inv-note">Атака +2 · Урон 1к6 дробящий</div>
+            </div>
+          </div>
+          <div class="inv-item">
+            <span class="inv-icon">🌟</span>
+            <div>
+              <div class="inv-name">Слово Отречения</div>
+              <div class="inv-note">Дальн. атака +6 · Урон 2к6 психич. · Дист. 18 м</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Инвентарь</div>
+        <div class="inv">
+          <div class="inv-item"><span class="inv-icon">🪄</span><div><div class="inv-name">Посох</div></div></div>
+          <div class="inv-item"><span class="inv-icon">👘</span><div><div class="inv-name">Ряса с обережными узлами</div></div></div>
+          <div class="inv-item"><span class="inv-icon">📿</span><div><div class="inv-name">Чётки из рябины и чертополоха</div></div></div>
+          <div class="inv-item"><span class="inv-icon">💧</span><div><div class="inv-name">Сосуд со святой водой</div></div></div>
+          <div class="inv-item"><span class="inv-icon">⚰</span><div><div class="inv-name">Земля с могилы святого</div></div></div>
+          <div class="inv-item"><span class="inv-icon">✝</span><div><div class="inv-name">Малый крест без украшений</div></div></div>
+          <div class="inv-item"><span class="inv-icon">🧶</span><div><div class="inv-name">Лоскут ткани</div><div class="inv-note">Для закрытия зеркала</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Abilities -->
+    <div class="section-title">Умения</div>
+    <div class="inv" style="margin-bottom:1.25rem">
+
+      <div class="inv-item" style="display:block;padding:10px 14px;">
+        <div class="ability-type">⚔️ Атакующее</div>
+        <div class="ability-name">Слово Отречения</div>
+        <div class="ability-desc">Действие. Дальняя атака на цель в пределах 18 м. Атака +6. Попадание: 2к6 психического урона. Если цель поддерживает эффект очарования, страха или иллюзии — один такой эффект немедленно прекращается.</div>
+        <div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:6px;margin-bottom:3px;font-family:var(--font-serif);text-transform:uppercase;letter-spacing:0.05em">Использований (3 за игру)</div>
+          <div class="uses-tracker">
+            <div class="use-pip" onclick="togglePip(this)"></div>
+            <div class="use-pip" onclick="togglePip(this)"></div>
+            <div class="use-pip" onclick="togglePip(this)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-item" style="display:block;padding:10px 14px;">
+        <div class="ability-type">🛡️ Защитное · Действие или Реакция</div>
+        <div class="ability-name">Круг Безмолвия</div>
+        <div class="ability-desc">Создаёт вокруг себя или союзника (в пределах 6 м) круг покоя радиусом 1.5 м. Союзники внутри — преимущество на спасброски Мудрости и Харизмы. Нежить / дух / зеркальная сущность, пытаясь войти, делает спасбросок Мудрости <strong>Сл 15</strong> (при провале — не может войти). Длительность: 1 раунд.</div>
+        <div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:6px;margin-bottom:3px;font-family:var(--font-serif);text-transform:uppercase;letter-spacing:0.05em">Использований (1 за короткий отдых)</div>
+          <div class="uses-tracker">
+            <div class="use-pip" onclick="togglePip(this)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-item" style="display:block;padding:10px 14px;">
+        <div class="ability-type">🔇 Сюжетное</div>
+        <div class="ability-name">Точка тишины</div>
+        <div class="ability-desc">Варфоломей сосредотачивается и слушает не слова, а источник страха. Преимущество на проверку Религии, Мудрости или Проницательности против морока, страха, отражения, ложного голоса или Судного Зеркала.</div>
+        <div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:6px;margin-bottom:3px;font-family:var(--font-serif);text-transform:uppercase;letter-spacing:0.05em">Использований (3 за игру)</div>
+          <div class="uses-tracker">
+            <div class="use-pip" onclick="togglePip(this)"></div>
+            <div class="use-pip" onclick="togglePip(this)"></div>
+            <div class="use-pip" onclick="togglePip(this)"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Ulta -->
+    <div class="ulta-card">
+      <div class="ulta-label">✨ Ульта · 1 раз за игру</div>
+      <div class="ulta-name">Пробуждение Отсвета</div>
+      <div class="ulta-desc">Все союзники в радиусе 9 м немедленно избавляются от эффектов очарования, страха, сна и иллюзий. На 1 минуту союзники в радиусе получают сопротивление некротическому урону, а их удары считаются освящёнными и наносят дополнительно <strong>1к4 лучевого урона</strong> нежити, духам и зеркальным сущностям.</div>
+      <div class="uses-tracker" style="margin-top:8px">
+        <div class="use-pip" onclick="togglePip(this)" style="background:var(--color-accent);border-color:var(--color-accent)"></div>
+      </div>
+    </div>
+
+    <!-- Advantages -->
+    <div class="section-title">Преимущества в этом приключении</div>
+    <div class="adv-list">
+      <div class="adv-item"><span class="adv-icon">💧</span><span>Проверяет миску воды в камере Тихона</span></div>
+      <div class="adv-item"><span class="adv-icon">🏛</span><span>Определяет след морока в ратуше</span></div>
+      <div class="adv-item"><span class="adv-icon">🪞</span><span>Спорит с отражением в Зазеркалье</span></div>
+      <div class="adv-item"><span class="adv-icon">🧶</span><span>Закрывает зеркало тканью или святой водой</span></div>
+      <div class="adv-item"><span class="adv-icon">🛡</span><span>Защищает союзника от страха</span></div>
+      <div class="adv-item"><span class="adv-icon">⚖️</span><span>На суде объясняет морок без паники и фанатизма</span></div>
+    </div>
+
+    <!-- Tips -->
+    <div class="section-title">Подсказки игроку</div>
+    <div class="tips-list">
+      <div class="tip-item">🪞 <strong>Зазеркалье:</strong> ты нужен не для урона, а для защиты воли.</div>
+      <div class="tip-item">😨 Если кто-то проваливает страх или морок — используй <strong>Круг Безмолвия</strong>.</div>
+      <div class="tip-item">⚖️ <strong>Финал:</strong> твоя речь может дать суду доверие, а группе — шанс уничтожить зеркало.</div>
+    </div>
+
+    <!-- Story -->
+    <div class="section-title">История</div>
+    <div class="notes-box">Вышел из северного скита, где учили стоять против бесовских наваждений не криком, а внутренней тишиной. Его монастырь погубила сила, не оставившая тел — только безумие. Он выжил, потому что нашёл в себе место, где чужой шёпот гаснет.</div>
+
+    <div class="footer">
+      <span class="footer-hint">HP меняется кнопками · пипки умений кликабельны</span>
+      <span class="export-date">Пять дней до петли · 2026</span>
+    </div>
+
+  </article>
+
+  <script>
+    function changeHP(button, delta) {
+      const vital = button.closest(".vital");
+      const valueNode = vital.querySelector(".hp-val");
+      const maxNode = vital.querySelector(".hp-max");
+      const fill = vital.querySelector(".hp-fill");
+      const max = Math.max(1, parseInt(maxNode.textContent, 10) || 1);
+      const next = Math.max(0, Math.min(max, (parseInt(valueNode.textContent, 10) || 0) + delta));
+      valueNode.textContent = next;
+      const pct = next / max;
+      fill.style.width = Math.round(pct * 100) + "%";
+      fill.style.background = pct > 0.5 ? "#6b5e9e" : pct > 0.25 ? "#ba7517" : "#b8483f";
+    }
+    function toggleSkill(button) { button.querySelector(".skill-dot").classList.toggle("proficient"); }
+    function togglePip(pip) { pip.classList.toggle("spent"); }
+  </script>
+</body>
+</html>
