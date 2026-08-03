@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Боец Святого Ордена</title>
+  <title>Епископ Каллист Грейвз</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -508,11 +513,11 @@
 
         <div class="sheet-title">Карточка противника — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">БС</div>
+          <div class="avatar">ЕК</div>
           <div class="header-info">
-            <div class="char-name">Боец Святого Ордена</div>
-            <div class="char-sub">Рядовой · «Серебряный Пёс» · Гуманоид (человек)</div>
-            <div class="badges"><span class="badge">Фанатик</span><span class="badge">Боевая единица ордена</span><span class="badge">Рядовой</span></div>
+            <div class="char-name">Епископ Каллист Грейвз</div>
+            <div class="char-sub">Охотник на Скверну (главный босс)</div>
+            <div class="badges"><span class="badge">Святой Орден</span><span class="badge">Главный босс</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">13</span>
-              <span class="vital-max">/ <span class="hp-max">13</span></span>
+              <span class="vital-val hp-val">85</span>
+              <span class="vital-max">/ <span class="hp-max">85</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -533,57 +538,17 @@
 
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">16</div>
-            <div class="vital-max">Посеребрённая кольчуга</div>
+            <div class="vital-val">18</div>
+            <div class="vital-max">Серебрёная кольчуга + щит</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+0</div>
-            <div class="vital-max">Скорость: 30 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">30 футов</div>
           </div>
         </div>
 
 
-        <div class="section-title">Характеристики</div>
-        <div class="attrs">
-          
-            <div class="attr">
-              <div class="attr-name">Сила</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Ловкость</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Телосложение</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Интеллект</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Мудрость</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Харизма</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-        </div>
 
         <div class="two-col">
 
@@ -592,14 +557,20 @@
             <div class="skills">
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
-          <span class="skill-name">Иммунитет</span>
-          <span class="skill-bonus">Очарование (божественная защита)</span>
+          <span class="skill-name">Спасброски</span>
+          <span class="skill-bonus">Сил +6, Телос +5, Муд +7</span>
         </button>
-      
+
+        <button class="skill" type="button" onclick="toggleSkill(this)">
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Иммунитет</span>
+          <span class="skill-bonus">Очарование, яд, страх</span>
+        </button>
+
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
           <span class="skill-name">Чувства</span>
-          <span class="skill-bonus">Тёмное зрение 30 футов (святые очки)</span>
+          <span class="skill-bonus">Тёмное зрение 60 футов; Божественное чувство: знает местоположение нежити в 60 футах</span>
         </button>
       </div>
           </div>
@@ -608,51 +579,66 @@
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">⚒</span>
-          <span class="inv-name">Серебряная булава</span>
-          <span class="inv-note">1к6+2 дробящий; +1к4 серебром против нежити</span>
+          <span class="inv-icon" aria-hidden="true">⚔</span>
+          <span class="inv-name">Серебряный длинный меч «Экзорцист»</span>
+          <span class="inv-note">1к10+4 рубящий, +2к6 серебром против нежити</span>
         </div>
-      
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Посеребрённая кольчуга</span>
-          <span class="inv-note">КД 16</span>
+          <span class="inv-name">Посеребрённая кольчуга + щит</span>
+          <span class="inv-note">Щит с символом ордена</span>
         </div>
-      
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◈</span>
+          <span class="inv-name">Флакон святой воды (3 заряда)</span>
+          <span class="inv-note">2к6 некротического урона вампирам</span>
+        </div>
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">✚</span>
-          <span class="inv-name">Религиозные символы</span>
-          <span class="inv-note">Символика Святого Ордена</span>
+          <span class="inv-name">Реликварий с шипом</span>
+          <span class="inv-note">1/день, восстановление 3к6 НР</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">⛓</span>
+          <span class="inv-name">Серебряные наручники</span>
+          <span class="inv-note"></span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Серебряная булава</span>
-          <span class="ability-desc">🗡️ Атакующее · +4 к попаданию, 1к6+2 дробящего урона + 1к4 серебром против нежити.</span>
+          <span class="ability-name">Карающая Святость</span>
+          <span class="ability-desc">Атакующее · +1к8 урона излучением (+2к8 против нежити)</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Святая стойка</span>
-          <span class="ability-desc">🛡️ Защитное · Бонусное действие. До конца следующего хода получает +2 к КД.</span>
+          <span class="ability-name">Божественный Щит</span>
+          <span class="ability-desc">Защитное · Реакция, принимает половину урона союзника</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Боевой клич</span>
-          <span class="ability-desc">⚔️ Тактика · Когда боец входит в бой, он может дать преимущество на следующую атаку одному союзнику в 30 футах.</span>
+          <span class="ability-name">Оковы Веры</span>
+          <span class="ability-desc">Контроль · Цель в 60 футах проходит спасбросок Мудрости Сл 16, иначе парализована на 1 раунд</span>
+        </div>
+
+        <div class="inv-item ability">
+          <span class="ability-name">Воля Мученика</span>
+          <span class="ability-desc">Ульта (1/день) · 1 минута: союзники получают преимущество на спасброски и +2 к атакам; епископ получает сопротивление ко всем видам урона</span>
         </div>
       </div>
           </div>
         </div>
 
-        <div class="section-title">Предыстория</div>
-        <div class="notes-box">Основная боевая единица ордена. Носит серебряные доспехи и вооружён серебряной булавой. Фанатик, не боящийся смерти.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">04.06.2026</span>
+          <span class="footer-hint">НР меняется кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

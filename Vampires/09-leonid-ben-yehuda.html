@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Витто Скалетте</title>
+  <title>Леонид бен Иегуда</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -508,11 +513,11 @@
 
         <div class="sheet-title">Карточка персонажа — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">ВС</div>
+          <div class="avatar">ЛБ</div>
           <div class="header-info">
-            <div class="char-name">Витто Скалетте</div>
-            <div class="char-sub">Ночной Хирург · Чумной Доктор · Вампир · Уровень 2</div>
-            <div class="badges"><span class="badge">Холодный расчет</span><span class="badge">Хирург-боец</span><span class="badge">Бонус мастерства +2</span></div>
+            <div class="char-name">Леонид бен Иегуда</div>
+            <div class="char-sub">Хранитель Времени — клан «Кровавый Шехеразид»</div>
+            <div class="badges"><span class="badge">Главный герой</span><span class="badge">3 уровень</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">22</span>
-              <span class="vital-max">/ <span class="hp-max">22</span></span>
+              <span class="vital-val hp-val">24</span>
+              <span class="vital-max">/ <span class="hp-max">24</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -546,56 +551,56 @@
           </div>
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">15</div>
-            <div class="vital-max">Кожа + ловкость</div>
+            <div class="vital-val">14</div>
+            <div class="vital-max">Амулет + ловкость</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+2</div>
-            <div class="vital-max">Скорость: 30 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">30 футов</div>
           </div>
         </div>
 
 
         <div class="section-title">Характеристики</div>
         <div class="attrs">
-          
+
             <div class="attr">
               <div class="attr-name">Сила</div>
-              <div class="attr-val">16</div>
-              <div class="attr-mod">+3</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Ловкость</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Телосложение</div>
-              <div class="attr-val">15</div>
-              <div class="attr-mod">+2</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Интеллект</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Мудрость</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Харизма</div>
               <div class="attr-val">8</div>
               <div class="attr-mod">-1</div>
             </div>
-          
+
+            <div class="attr">
+              <div class="attr-name">Ловкость</div>
+              <div class="attr-val">15</div>
+              <div class="attr-mod">+2</div>
+            </div>
+
+            <div class="attr">
+              <div class="attr-name">Телосложение</div>
+              <div class="attr-val">14</div>
+              <div class="attr-mod">+2</div>
+            </div>
+
+            <div class="attr">
+              <div class="attr-name">Интеллект</div>
+              <div class="attr-val">17</div>
+              <div class="attr-mod">+3</div>
+            </div>
+
+            <div class="attr">
+              <div class="attr-name">Мудрость</div>
+              <div class="attr-val">15</div>
+              <div class="attr-mod">+2</div>
+            </div>
+
+            <div class="attr">
+              <div class="attr-name">Харизма</div>
+              <div class="attr-val">12</div>
+              <div class="attr-mod">+1</div>
+            </div>
+
         </div>
 
         <div class="two-col">
@@ -606,13 +611,7 @@
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
           <span class="skill-name">Спасброски</span>
-          <span class="skill-bonus">Сила, Телосложение</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Медицина</span>
-          <span class="skill-bonus">Преимущество для определения причины смерти</span>
+          <span class="skill-bonus">Интеллект +5, Мудрость +4</span>
         </button>
       </div>
           </div>
@@ -621,74 +620,82 @@
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">⚔</span>
-          <span class="inv-name">Хирургическая пила</span>
-          <span class="inv-note">1к8+3 рубящий</span>
+          <span class="inv-icon" aria-hidden="true">🔪</span>
+          <span class="inv-name">Ритуальный кинжал-шалет (посеребрённый)</span>
+          <span class="inv-note">1к4+2 колющий + серебро</span>
         </div>
-      
+
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Кожаный доспех</span>
-          <span class="inv-note">КД 15</span>
+          <span class="inv-icon" aria-hidden="true">⚒</span>
+          <span class="inv-name">Ювелирный молоток</span>
+          <span class="inv-note">1к4+2 дробящий</span>
         </div>
-      
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">⚙</span>
-          <span class="inv-name">Набор хирургических инструментов</span>
-          <span class="inv-note">Ланцеты, зажимы, иглы</span>
+          <span class="inv-name">Набор ювелирных инструментов</span>
+          <span class="inv-note">Для работы с камнями и металлом; может использоваться для взлома замков</span>
         </div>
-      
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◉</span>
+          <span class="inv-name">Золотые часы-луковица</span>
+          <span class="inv-note">Семейная реликвия. Показывают «эмоциональную температуру» владельца</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◆</span>
+          <span class="inv-name">Мешочек с драгоценными камнями</span>
+          <span class="inv-note">Для взятки или как материал для ритуалов</span>
+        </div>
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">◈</span>
-          <span class="inv-name">Пузырьки с формальдегидом</span>
-          <span class="inv-note">Можно использовать как отравляющие вещества</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">✦</span>
-          <span class="inv-name">Серебряный скальпель</span>
-          <span class="inv-note">Трофей с Джека Потрошителя; 1к4, игнорирует сопротивление</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🩸</span>
-          <span class="inv-name">Флакон с кровью Кроули</span>
-          <span class="inv-note">Восстанавливает 1к8 НР, 1 раз</span>
+          <span class="inv-name">Флакон с кровью Рахель</span>
+          <span class="inv-note">Восстанавливает 2к6 НР, 1 раз</span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Глубокое Рассечение</span>
-          <span class="ability-desc">🗡️ Атакующее · При попадании наносит дополнительно 1к6 некротического урона. Если цель — живое существо, она теряет 1к4 НР в начале своего следующего хода.</span>
+          <span class="ability-name">Чтение крови</span>
+          <span class="ability-desc">Клановое · Может коснуться капли крови и узнать последние воспоминания владельца (как заклинание «Мысленный взор», 1 раз в день)</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Экстренный Надрез</span>
-          <span class="ability-desc">🛡️ Защитное · Реакция. Когда по вам или союзнику в 5 футах попадают атакой, вы можете получить +3 к КД против этой атаки, но Витто получает 1к4 некротического урона; сопротивление игнорируется.</span>
+          <span class="ability-name">Метка Судьбы</span>
+          <span class="ability-desc">Атакующее · Помечает цель, следующая атака имеет преимущество; 3/день</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Кровавый Ланцет</span>
-          <span class="ability-desc">🩸 Вампирское · Действие. Бросок атаки ближнего боя (+5). При попадании: 1к6+3 колющего урона. Вы восстанавливаете НР, равные половине нанесённого урона, округляя вниз. Против нежити восстанавливает только 1к4.</span>
+          <span class="ability-name">Часовой Щит</span>
+          <span class="ability-desc">Защитное · Реакция, +4 к КД, перемещение 10 футов; 3/день</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Хирургическая Ярость</span>
-          <span class="ability-desc">💥 Ульта · 1 раз в день. В течение 1 минуты оружие наносит дополнительно 1к8 некротического урона. Пока активно умение, критический ход — на 19-20.</span>
+          <span class="ability-name">Украденное Время</span>
+          <span class="ability-desc">Клановое · 1к8 некротического урона, бонусное действие или +10 футов скорости; 3 заряда крови</span>
+        </div>
+
+        <div class="inv-item ability">
+          <span class="ability-name">Замедление</span>
+          <span class="ability-desc">Новое · Действие. Цель в 30 футах проходит спасбросок Мудрости Сл 14, иначе скорость уменьшается вдвое и нельзя использовать реакции 1 раунд; 2/день</span>
+        </div>
+
+        <div class="inv-item ability">
+          <span class="ability-name">Молот Времени</span>
+          <span class="ability-desc">Ульта (1/день) · Все в радиусе 10 футов парализованы на 1 раунд (спасбросок Мудрости Сл 14). Одна атака с преимуществом +2к6 урона</span>
         </div>
       </div>
           </div>
         </div>
 
-        <div class="section-title">Предыстория</div>
-        <div class="notes-box">Ночной хирург, привыкший видеть тело как механизм. Его холодная точность пугает даже союзников.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">09.06.2026</span>
+          <span class="footer-hint">НР и очки крови меняются кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

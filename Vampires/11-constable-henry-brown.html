@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Капитан Святого Ордена</title>
+  <title>Констебль Генри Браун</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -506,13 +511,13 @@
 <body>
   <article class="sheet">
 
-        <div class="sheet-title">Карточка противника — Викторианская эпоха</div>
+        <div class="sheet-title">Карточка персонажа — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">КС</div>
+          <div class="avatar">КГ</div>
           <div class="header-info">
-            <div class="char-name">Капитан Святого Ордена</div>
-            <div class="char-sub">Командир отряда · Гуманоид (человек)</div>
-            <div class="badges"><span class="badge">Фанатик высокого ранга</span><span class="badge">Командир элитного отряда</span><span class="badge">Сл 13</span></div>
+            <div class="char-name">Констебль Генри Браун</div>
+            <div class="char-sub">Новообращённый жандарм</div>
+            <div class="badges"><span class="badge">Главный герой</span><span class="badge">3 уровень</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">32</span>
-              <span class="vital-max">/ <span class="hp-max">32</span></span>
+              <span class="vital-val hp-val">28</span>
+              <span class="vital-max">/ <span class="hp-max">28</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -531,58 +536,71 @@
             </div>
           </div>
 
+          <div class="vital resource-vital" data-resource="blood">
+            <div class="vital-label">Очки крови</div>
+            <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
+              <span class="vital-val resource-val">10</span>
+              <span class="vital-max">/ <span class="resource-max">10</span></span>
+            </div>
+            <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
+            <div class="hp-controls">
+              <button class="hp-btn" type="button" onclick="changeResource(this,-1)" aria-label="Уменьшить очки крови">-</button>
+              <span style="font-size:11px;color:var(--color-text-secondary)">КРОВЬ</span>
+              <button class="hp-btn" type="button" onclick="changeResource(this,1)" aria-label="Увеличить очки крови">+</button>
+            </div>
+          </div>
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">18</div>
-            <div class="vital-max">Посеребрённый бригантин + щит</div>
+            <div class="vital-val">17</div>
+            <div class="vital-max">Посеребрённый стеганый жилет + щит</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+1</div>
-            <div class="vital-max">Скорость: 30 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">30 футов</div>
           </div>
         </div>
 
 
         <div class="section-title">Характеристики</div>
         <div class="attrs">
-          
+
             <div class="attr">
               <div class="attr-name">Сила</div>
               <div class="attr-val">16</div>
               <div class="attr-mod">+3</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Ловкость</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
+              <div class="attr-val">14</div>
+              <div class="attr-mod">+2</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Телосложение</div>
-              <div class="attr-val">14</div>
+              <div class="attr-val">15</div>
               <div class="attr-mod">+2</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Интеллект</div>
+              <div class="attr-val">10</div>
+              <div class="attr-mod">+0</div>
+            </div>
+
+            <div class="attr">
+              <div class="attr-name">Мудрость</div>
               <div class="attr-val">12</div>
               <div class="attr-mod">+1</div>
             </div>
-          
-            <div class="attr">
-              <div class="attr-name">Мудрость</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
-            </div>
-          
+
             <div class="attr">
               <div class="attr-name">Харизма</div>
-              <div class="attr-val">13</div>
+              <div class="attr-val">12</div>
               <div class="attr-mod">+1</div>
             </div>
-          
+
         </div>
 
         <div class="two-col">
@@ -593,19 +611,7 @@
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
           <span class="skill-name">Спасброски</span>
-          <span class="skill-bonus">Сила +5, Мудрость +4</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Иммунитет</span>
-          <span class="skill-bonus">Очарование, яд, страх</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Чувства</span>
-          <span class="skill-bonus">Тёмное зрение 60 футов; Божественное чутьё: нежить в 30 футах</span>
+          <span class="skill-bonus">Сила +5, Телосложение +4</span>
         </button>
       </div>
           </div>
@@ -614,56 +620,83 @@
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">⚔</span>
-          <span class="inv-name">Серебряный длинный меч</span>
-          <span class="inv-note">1к8+3 рубящий; +2к4 серебром против нежити</span>
+          <span class="inv-icon" aria-hidden="true">⚒</span>
+          <span class="inv-name">Серебряная дубинка</span>
+          <span class="inv-note">1к4+3 дробящий + 1к4 серебром</span>
         </div>
-      
+
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Посеребрённый бригантин + щит</span>
-          <span class="inv-note">КД 18</span>
+          <span class="inv-icon" aria-hidden="true">🔫</span>
+          <span class="inv-name">Служебный револьвер</span>
+          <span class="inv-note">1к8+2 колющий, 6 зарядов</span>
         </div>
-      
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">⛓</span>
+          <span class="inv-name">Наручники</span>
+          <span class="inv-note">Для захвата цели</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◆</span>
+          <span class="inv-name">Полицейский значок</span>
+          <span class="inv-note">Теперь поддельный</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◈</span>
+          <span class="inv-name">Серебряный свисток</span>
+          <span class="inv-note">Для вызова подмоги ковена</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◈</span>
+          <span class="inv-name">Флакон с кровью</span>
+          <span class="inv-note">Восстанавливает 1к8 НР, 1 раз</span>
+        </div>
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">✚</span>
-          <span class="inv-name">Религиозные символы</span>
-          <span class="inv-note">Знаки высокого ранга</span>
+          <span class="inv-name">Фляга со святой водой</span>
+          <span class="inv-note">Трофей, можно использовать против врагов</span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Серебряный длинный меч</span>
-          <span class="ability-desc">🗡️ Атакующее · +5 к попаданию, 1к8+3 рубящего урона + 2к4 серебром против нежити.</span>
+          <span class="ability-name">Задержание</span>
+          <span class="ability-desc">Атакующее · Цель проходит спасбросок Силы Сл 13, иначе опутана; постоянно</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Божественная защита</span>
-          <span class="ability-desc">🛡️ Защитное · Реакция. Когда союзник в 30 футах становится целью атаки, капитан может дать ему +3 к КД против этой атаки. 3 раза в день.</span>
+          <span class="ability-name">Полицейское чутьё</span>
+          <span class="ability-desc">Защитное · Реакция, обнаружение скрытых врагов</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Оковы Веры</span>
-          <span class="ability-desc">⚡ Контроль · Действие. Одна цель в 30 футах преуспевает в спасброске Мудрости (Сл 13), иначе не может двигаться в сторону капитана в течение 1 раунда.</span>
+          <span class="ability-name">Принуждение к признанию</span>
+          <span class="ability-desc">Вампирское · Цель отвечает на один вопрос (спасбросок Мудрости Сл 14); 2/день</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Клич Мученика</span>
-          <span class="ability-desc">💀 Ульта · 1 раз в бой. Все союзники в радиусе 30 футов получают преимущество на броски атаки на 1 раунд. Капитан восстанавливает 1к8 НР.</span>
+          <span class="ability-name">Тактическое отступление</span>
+          <span class="ability-desc">Новое · Бонусное действие. Генри даёт себе или союзнику дополнительное перемещение на 15 футов без провоцирования атак; 3/день</span>
+        </div>
+
+        <div class="inv-item ability">
+          <span class="ability-name">Вызов подмоги</span>
+          <span class="ability-desc">Ульта (1/день) · Привлекает 1к4 уличных союзников на 1 минуту</span>
         </div>
       </div>
           </div>
         </div>
 
-        <div class="section-title">Предыстория</div>
-        <div class="notes-box">Командир элитного отряда. Фанатик высокого ранга в серебряных доспехах с религиозными символами.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">04.06.2026</span>
+          <span class="footer-hint">НР и очки крови меняются кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

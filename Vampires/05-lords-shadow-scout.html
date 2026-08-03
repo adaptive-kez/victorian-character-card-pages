@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Разведчик «Тени Господни»</title>
+  <title>Разведчик «Тень Господня»</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -510,9 +515,9 @@
         <div class="header">
           <div class="avatar">Р«</div>
           <div class="header-info">
-            <div class="char-name">Разведчик «Тени Господни»</div>
-            <div class="char-sub">Снайпер · Гуманоид (человек)</div>
-            <div class="badges"><span class="badge">Хладнокровный</span><span class="badge">Арбалетчик-снайпер</span><span class="badge">Скрытность +5</span></div>
+            <div class="char-name">Разведчик «Тень Господня»</div>
+            <div class="char-sub">Снайпер</div>
+            <div class="badges"><span class="badge">Святой Орден</span><span class="badge">Снайпер</span></div>
           </div>
         </div>
 
@@ -538,52 +543,12 @@
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+3</div>
-            <div class="vital-max">Скорость: 30 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">Не указана в документе</div>
           </div>
         </div>
 
 
-        <div class="section-title">Характеристики</div>
-        <div class="attrs">
-          
-            <div class="attr">
-              <div class="attr-name">Сила</div>
-              <div class="attr-val">8</div>
-              <div class="attr-mod">-1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Ловкость</div>
-              <div class="attr-val">16</div>
-              <div class="attr-mod">+3</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Телосложение</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Интеллект</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Мудрость</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Харизма</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-        </div>
 
         <div class="two-col">
 
@@ -592,67 +557,27 @@
             <div class="skills">
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
-          <span class="skill-name">Скрытность</span>
-          <span class="skill-bonus">+5</span>
+          <span class="skill-name">Атака</span>
+          <span class="skill-bonus">1к8+3 (серебряный болт), дистанция 80/320</span>
         </button>
-      
+
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
-          <span class="skill-name">Восприятие</span>
-          <span class="skill-bonus">+4</span>
+          <span class="skill-name">Навыки</span>
+          <span class="skill-bonus">Скрытность +5, Восприятие +4</span>
         </button>
-      </div>
-          </div>
-          <div>
-
-            <div class="section-title">Снаряжение</div>
-            <div class="inv">
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🏹</span>
-          <span class="inv-name">Серебряный арбалет</span>
-          <span class="inv-note">1к8+3 колющий; дистанция 80/320</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◆</span>
-          <span class="inv-name">Серебряные болты</span>
-          <span class="inv-note">Игнорируют сопротивление нежити</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Кожаный доспех</span>
-          <span class="inv-note">КД 13</span>
-        </div>
-      </div>
-            <div class="section-title">Способности</div>
-            <div class="inv">
-        <div class="inv-item ability">
-          <span class="ability-name">Серебряный арбалет</span>
-          <span class="ability-desc">🗡️ Атакующее · +5 к попаданию, 1к8+3 колющего урона, дистанция 80/320. Серебряные болты игнорируют сопротивление нежити.</span>
-        </div>
-      
-        <div class="inv-item ability">
-          <span class="ability-name">Отступление в тень</span>
-          <span class="ability-desc">🛡️ Защитное · Реакция. После атаки разведчик может переместиться на 10 футов и получить преимущество на Скрытность до начала следующего хода.</span>
-        </div>
-      
-        <div class="inv-item ability">
-          <span class="ability-name">Прицельный выстрел</span>
-          <span class="ability-desc">🎯 Контроль · Действие. Следующая атака арбалетом имеет преимущество.</span>
-        </div>
       </div>
           </div>
         </div>
 
         <div class="section-title">Предыстория</div>
-        <div class="notes-box">Скрытный стрелок из арбалета, занимающий верхние точки. Работает серебряными болтами.</div>
+        <div class="notes-box">Стрелки из арбалетов, занимающие верхние точки.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">04.06.2026</span>
+          <span class="footer-hint">НР меняется кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

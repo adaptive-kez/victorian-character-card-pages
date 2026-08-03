@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Финн</title>
+  <title>Сестра Агата</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -506,13 +511,13 @@
 <body>
   <article class="sheet">
 
-        <div class="sheet-title">Карточка персонажа — Викторианская эпоха</div>
+        <div class="sheet-title">Карточка противника — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">Ф</div>
+          <div class="avatar">СА</div>
           <div class="header-info">
-            <div class="char-name">Финн</div>
-            <div class="char-sub">Разносчик газет · Фамильяр · Уровень 2</div>
-            <div class="badges"><span class="badge">Уличная хитрость</span><span class="badge">Шустрый плут</span><span class="badge">Бонус мастерства +2</span></div>
+            <div class="char-name">Сестра Агата</div>
+            <div class="char-sub">Охотница на вампиров</div>
+            <div class="badges"><span class="badge">Святой Орден</span><span class="badge">Охотница</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">15</span>
-              <span class="vital-max">/ <span class="hp-max">15</span></span>
+              <span class="vital-val hp-val">25</span>
+              <span class="vital-max">/ <span class="hp-max">25</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -531,176 +536,47 @@
             </div>
           </div>
 
-          <div class="vital resource-vital" data-resource="blood">
-            <div class="vital-label">Очки крови</div>
-            <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val resource-val">10</span>
-              <span class="vital-max">/ <span class="resource-max">10</span></span>
-            </div>
-            <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
-            <div class="hp-controls">
-              <button class="hp-btn" type="button" onclick="changeResource(this,-1)" aria-label="Уменьшить очки крови">-</button>
-              <span style="font-size:11px;color:var(--color-text-secondary)">КРОВЬ</span>
-              <button class="hp-btn" type="button" onclick="changeResource(this,1)" aria-label="Увеличить очки крови">+</button>
-            </div>
-          </div>
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
             <div class="vital-val">14</div>
-            <div class="vital-max">Кожаная куртка + ловкость</div>
+            <div class="vital-max">Ряса + кольчуга</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+3</div>
-            <div class="vital-max">Скорость: 35 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">Не указана в документе</div>
           </div>
         </div>
 
 
-        <div class="section-title">Характеристики</div>
-        <div class="attrs">
-          
-            <div class="attr">
-              <div class="attr-name">Сила</div>
-              <div class="attr-val">8</div>
-              <div class="attr-mod">-1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Ловкость</div>
-              <div class="attr-val">17</div>
-              <div class="attr-mod">+3</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Телосложение</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Интеллект</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Мудрость</div>
-              <div class="attr-val">13</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Харизма</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-        </div>
 
         <div class="two-col">
 
           <div>
-            <div class="section-title">Навыки</div>
-            <div class="skills">
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Чувство улицы</span>
-          <span class="skill-bonus">Преимущество на проверки Харизмы для сбора информации в городе</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Знакомство с тенями</span>
-          <span class="skill-bonus">+2 к Скрытности в городских условиях</span>
-        </button>
-      </div>
-          </div>
-          <div>
 
-            <div class="section-title">Снаряжение</div>
-            <div class="inv">
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🔪</span>
-          <span class="inv-name">Складной нож</span>
-          <span class="inv-note">1к4+3 колющий; метательный 20/60</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">📰</span>
-          <span class="inv-name">Свёрнутая газета</span>
-          <span class="inv-note">1к4 дробящий, лёгкое</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">✦</span>
-          <span class="inv-name">Заточка</span>
-          <span class="inv-note">1к4+3 колющий; используется с «Мастер раскройки»</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◆</span>
-          <span class="inv-name">Серебряные шарики для рогатки</span>
-          <span class="inv-note">5 штук; 1к4 дробящий + 1к4 серебром против нежити</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Сумка газетчика</span>
-          <span class="inv-note">Старые газеты, вакса, свисток, засохшая булка</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◈</span>
-          <span class="inv-name">Медная монета от Кроули</span>
-          <span class="inv-note">Знак принадлежности к ковену</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🗺</span>
-          <span class="inv-name">Карта Лондона с пометками</span>
-          <span class="inv-note">Уличные маршруты и отметки</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◇</span>
-          <span class="inv-name">Сигнальный фонарик</span>
-          <span class="inv-note">Сигнал для ковена</span>
-        </div>
-      </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Двойной удар</span>
-          <span class="ability-desc">🗡️ Атакующее · Действие. Финн берёт газету и нож в две руки и наносит две атаки за одно действие: газетой 1к4 дробящий и ножом 1к4+3 колющий. Можно распределять по разным целям. Использований: модификатор Ловкости (3) в день.</span>
+          <span class="ability-name">Атака</span>
+          <span class="ability-desc">Атакующее · Дальняя: святая вода, 2к6</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Пубертатная ярость</span>
-          <span class="ability-desc">🔥 Баф · До конца своего следующего хода все атаки ближнего боя Финна наносят дополнительно 1к6 урона. После использования — помеха на следующий бросок атаки. Использований: 2 раза в день.</span>
-        </div>
-      
-        <div class="inv-item ability">
-          <span class="ability-name">Уличный попрошайка</span>
-          <span class="ability-desc">🗣️ Социальное · Действие вне боя. Цель проходит спасбросок Мудрости (Сл 13), иначе проникается историей Финна. После успеха Финн получает монету, еду, подсказку, пропуск или ключ по выбору цели или Мастера. При провале на 5+ цель готова выполнить простое поручение. Использований: 2 раза в день.</span>
-        </div>
-      
-        <div class="inv-item ability">
-          <span class="ability-name">Мастер раскройки</span>
-          <span class="ability-desc">💥 Ульта · 1 раз за всю игру. Финн достаёт заточку и наносит цели в ближнем бою 7 ударов. Каждый удар: 1к4 колющего урона. Все удары автоматически попадают, кроме случаев иммунитета. Критический урон возможен на 19-20. После использования Финн получает 1 уровень истощения до конца следующего боя или короткого отдыха.</span>
+          <span class="ability-name">Кровавый обет</span>
+          <span class="ability-desc">Ульта · Цель-вампир теряет 2к8 НР</span>
         </div>
       </div>
           </div>
         </div>
 
         <div class="section-title">Предыстория</div>
-        <div class="notes-box">Финн выжил там, где взрослые исчезали бесследно. Газеты — только прикрытие для глаз, которые видят слишком много.</div>
+        <div class="notes-box">Молодая женщина в белой рясе. Специалист по магии крови. Использует святую воду.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">09.06.2026</span>
+          <span class="footer-hint">НР меняется кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

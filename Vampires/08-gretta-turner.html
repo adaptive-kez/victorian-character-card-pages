@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Скаль</title>
+  <title>Гретта Тёрнер</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -506,13 +511,13 @@
 <body>
   <article class="sheet">
 
-        <div class="sheet-title">Карточка противника — Викторианская эпоха</div>
+        <div class="sheet-title">Карточка персонажа — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">С</div>
+          <div class="avatar">ГТ</div>
           <div class="header-info">
-            <div class="char-name">Скаль</div>
-            <div class="char-sub">Scavenger Vampire · Нежить (вампир) · Страж Первородной Скорби</div>
-            <div class="badges"><span class="badge">Враждебный</span><span class="badge">Высохший вампир-страж</span><span class="badge">Сл 12</span></div>
+            <div class="char-name">Гретта Тёрнер</div>
+            <div class="char-sub">Призрачная Репортёрша</div>
+            <div class="badges"><span class="badge">Главный герой</span><span class="badge">3 уровень</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">22</span>
-              <span class="vital-max">/ <span class="hp-max">22</span></span>
+              <span class="vital-val hp-val">21</span>
+              <span class="vital-max">/ <span class="hp-max">21</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -531,58 +536,71 @@
             </div>
           </div>
 
+          <div class="vital resource-vital" data-resource="blood">
+            <div class="vital-label">Очки крови</div>
+            <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
+              <span class="vital-val resource-val">10</span>
+              <span class="vital-max">/ <span class="resource-max">10</span></span>
+            </div>
+            <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
+            <div class="hp-controls">
+              <button class="hp-btn" type="button" onclick="changeResource(this,-1)" aria-label="Уменьшить очки крови">-</button>
+              <span style="font-size:11px;color:var(--color-text-secondary)">КРОВЬ</span>
+              <button class="hp-btn" type="button" onclick="changeResource(this,1)" aria-label="Увеличить очки крови">+</button>
+            </div>
+          </div>
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">14</div>
-            <div class="vital-max">Высохшая кожа</div>
+            <div class="vital-val">16</div>
+            <div class="vital-max">Улучшенный кожаный доспех + ловкость</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+3</div>
-            <div class="vital-max">Скорость: 40 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">35 футов</div>
           </div>
         </div>
 
 
         <div class="section-title">Характеристики</div>
         <div class="attrs">
-          
+
             <div class="attr">
               <div class="attr-name">Сила</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
+              <div class="attr-val">8</div>
+              <div class="attr-mod">-1</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Ловкость</div>
-              <div class="attr-val">16</div>
-              <div class="attr-mod">+3</div>
+              <div class="attr-val">18</div>
+              <div class="attr-mod">+4</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Телосложение</div>
               <div class="attr-val">12</div>
               <div class="attr-mod">+1</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Интеллект</div>
-              <div class="attr-val">6</div>
-              <div class="attr-mod">-2</div>
+              <div class="attr-val">16</div>
+              <div class="attr-mod">+3</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Мудрость</div>
+              <div class="attr-val">14</div>
+              <div class="attr-mod">+2</div>
+            </div>
+
+            <div class="attr">
+              <div class="attr-name">Харизма</div>
               <div class="attr-val">10</div>
               <div class="attr-mod">+0</div>
             </div>
-          
-            <div class="attr">
-              <div class="attr-name">Харизма</div>
-              <div class="attr-val">8</div>
-              <div class="attr-mod">-1</div>
-            </div>
-          
+
         </div>
 
         <div class="two-col">
@@ -593,25 +611,13 @@
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
           <span class="skill-name">Спасброски</span>
-          <span class="skill-bonus">Ловкость +5</span>
+          <span class="skill-bonus">Ловкость +6, Интеллект +5</span>
         </button>
-      
+
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
-          <span class="skill-name">Иммунитет</span>
-          <span class="skill-bonus">Очарование, яд</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Уязвимость</span>
-          <span class="skill-bonus">Серебро, огонь</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Чувства</span>
-          <span class="skill-bonus">Тёмное зрение 60 футов; Слепое зрение 30 футов</span>
+          <span class="skill-name">Навыки</span>
+          <span class="skill-bonus">Скрытность +7, Расследование +6, Восприятие +5, Акробатика +7</span>
         </button>
       </div>
           </div>
@@ -620,56 +626,89 @@
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">☠</span>
-          <span class="inv-name">Высохшие когти</span>
-          <span class="inv-note">Основное оружие</span>
+          <span class="inv-icon" aria-hidden="true">🔫</span>
+          <span class="inv-name">Револьвер «Вдовья месть» (посеребрённый)</span>
+          <span class="inv-note">1к10+4 колющий; дистанция 40/120, 6 зарядов. Серебряные пули игнорируют сопротивление</span>
         </div>
-      
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">🔪</span>
+          <span class="inv-name">Скрытый клинок (в рукаве)</span>
+          <span class="inv-note">1к4+4 колющий; преимущество при атаке из скрытности</span>
+        </div>
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">◈</span>
-          <span class="inv-name">Пергаментная кожа</span>
-          <span class="inv-note">Естественная защита</span>
+          <span class="inv-name">Дымовая шашка (2 шт.)</span>
+          <span class="inv-note">Создаёт облако дыма, дающее укрытие</span>
         </div>
-      
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◉</span>
+          <span class="inv-name">Фотокамера</span>
+          <span class="inv-note">С улучшенной магниевой вспышкой — ослепление</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">⚙</span>
+          <span class="inv-name">Набор отмычек</span>
+          <span class="inv-note">Для взлома замков</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◆</span>
+          <span class="inv-name">Карта Лондона</span>
+          <span class="inv-note">С отмеченными убежищами ордена</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◈</span>
+          <span class="inv-name">Флакон с кровью Витто</span>
+          <span class="inv-note">Восстанавливает 2к6 НР, 1 раз</span>
+        </div>
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Стайная тактика</span>
-          <span class="inv-note">Опасен рядом с другими скалями</span>
+          <span class="inv-name">Запас серебряных пуль (12 шт.)</span>
+          <span class="inv-note">Для револьвера</span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Когти</span>
-          <span class="ability-desc">🗡️ Атакующее · +4 к попаданию, 1к6+2 рубящего урона. При попадании цель должна преуспеть в спасброске Телосложения (Сл 12), иначе получает дополнительную рану: 1к4 кровотечения в начале каждого хода до лечения.</span>
+          <span class="ability-name">Выстрел из тени</span>
+          <span class="ability-desc">Атакующее · Если Гретта скрыта, атака револьвером имеет преимущество и наносит +1к8 урона (скрытная атака); постоянно</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Скользкая тень</span>
-          <span class="ability-desc">🛡️ Защитное · Реакция. Когда по скалю попадают атакой, он может переместиться на 10 футов без провоцирования атак и получить +2 к КД против этой атаки.</span>
+          <span class="ability-name">Газетная завеса</span>
+          <span class="ability-desc">Защитное (диверсия) · Реакция. Бросок бумаги в лицо или дымовая шашка; атакующий получает помеху на атаку, Гретта может скрыться</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Визг</span>
-          <span class="ability-desc">💀 Контроль · Действие. Все существа в радиусе 10 футов преуспевают в спасброске Мудрости (Сл 12), иначе испуганы на 1 раунд.</span>
+          <span class="ability-name">Слабое место</span>
+          <span class="ability-desc">Контроль · Действие. Следующая атака по врагу имеет преимущество и наносит +1к6 урона; 3/день</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Стая</span>
-          <span class="ability-desc">🔪 Ульта · Если рядом 2+ скаля, они могут совместной атакой нанести 2к6+4 урона одной цели (бросок атаки +6). Используется 1 раз на группу.</span>
+          <span class="ability-name">Кровавая метка</span>
+          <span class="ability-desc">Вампирское · Действие. Гретта метит врага кровью в 30 футах, знает его местоположение, её атаки по нему имеют преимущество; 2/день</span>
+        </div>
+
+        <div class="inv-item ability">
+          <span class="ability-name">Смертельная передовица</span>
+          <span class="ability-desc">Ульта (1/день) · +8 к попаданию, урон 3к10+4. Против вампира дополнительно 2к6 серебром. Гретта остаётся скрытой после выстрела</span>
         </div>
       </div>
           </div>
         </div>
 
-        <div class="section-title">Предыстория</div>
-        <div class="notes-box">Древние, высохшие вампиры-стражи, нанятые «Первородной Скорбью» для проверки лояльности. Они не говорят, только шипят и щёлкают челюстями.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">04.06.2026</span>
+          <span class="footer-hint">НР и очки крови меняются кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

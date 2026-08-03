@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Гретта Тёрнер</title>
+  <title>Катрин</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -508,11 +513,11 @@
 
         <div class="sheet-title">Карточка персонажа — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">ГТ</div>
+          <div class="avatar">К</div>
           <div class="header-info">
-            <div class="char-name">Гретта Тёрнер</div>
-            <div class="char-sub">Настырная Репортёрша · Вампир · Уровень 2</div>
-            <div class="badges"><span class="badge">Опасное любопытство</span><span class="badge">Репортёр-стрелок</span><span class="badge">Бонус мастерства +2</span></div>
+            <div class="char-name">Катрин</div>
+            <div class="char-sub">Ночная Вербовщица</div>
+            <div class="badges"><span class="badge">Главный герой</span><span class="badge">3 уровень</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">18</span>
-              <span class="vital-max">/ <span class="hp-max">18</span></span>
+              <span class="vital-val hp-val">22</span>
+              <span class="vital-max">/ <span class="hp-max">22</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -546,56 +551,56 @@
           </div>
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">14</div>
-            <div class="vital-max">Кожа + ловкость</div>
+            <div class="vital-val">16</div>
+            <div class="vital-max">Улучшенный корсет + ловкость</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+2</div>
-            <div class="vital-max">Скорость: 30 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">30 футов</div>
           </div>
         </div>
 
 
         <div class="section-title">Характеристики</div>
         <div class="attrs">
-          
+
             <div class="attr">
               <div class="attr-name">Сила</div>
-              <div class="attr-val">8</div>
-              <div class="attr-mod">-1</div>
+              <div class="attr-val">10</div>
+              <div class="attr-mod">+0</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Ловкость</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
+              <div class="attr-val">17</div>
+              <div class="attr-mod">+3</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Телосложение</div>
+              <div class="attr-val">13</div>
+              <div class="attr-mod">+1</div>
+            </div>
+
+            <div class="attr">
+              <div class="attr-name">Интеллект</div>
               <div class="attr-val">12</div>
               <div class="attr-mod">+1</div>
             </div>
-          
-            <div class="attr">
-              <div class="attr-name">Интеллект</div>
-              <div class="attr-val">16</div>
-              <div class="attr-mod">+3</div>
-            </div>
-          
+
             <div class="attr">
               <div class="attr-name">Мудрость</div>
               <div class="attr-val">14</div>
               <div class="attr-mod">+2</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Харизма</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
+              <div class="attr-val">18</div>
+              <div class="attr-mod">+4</div>
             </div>
-          
+
         </div>
 
         <div class="two-col">
@@ -606,7 +611,13 @@
         <button class="skill" type="button" onclick="toggleSkill(this)">
           <span class="skill-dot proficient"></span>
           <span class="skill-name">Спасброски</span>
-          <span class="skill-bonus">Ловкость, Интеллект</span>
+          <span class="skill-bonus">Ловкость +5, Харизма +6</span>
+        </button>
+
+        <button class="skill" type="button" onclick="toggleSkill(this)">
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Навыки</span>
+          <span class="skill-bonus">Обман +8, Убеждение +8, Проницательность +4, Скрытность +5</span>
         </button>
       </div>
           </div>
@@ -615,80 +626,83 @@
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🔫</span>
-          <span class="inv-name">Револьвер «Виблей»</span>
-          <span class="inv-note">1к10+2 колющий; дистанция 40/120; 6 зарядов</span>
+          <span class="inv-icon" aria-hidden="true">🔪</span>
+          <span class="inv-name">Кинжал-стилет (посеребрённый)</span>
+          <span class="inv-note">1к4+3 колющий + серебро</span>
         </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◆</span>
-          <span class="inv-name">Серебряные пули</span>
-          <span class="inv-note">6 штук; игнорируют сопротивление вампиров</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">📰</span>
-          <span class="inv-name">Блокнот и механическое перо</span>
-          <span class="inv-note">Журналистские записи</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◈</span>
-          <span class="inv-name">Фотоаппарат с магниевой вспышкой</span>
-          <span class="inv-note">Для ослепления и фиксации улик</span>
-        </div>
-      
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Фальшивый пропуск в библиотеку</span>
-          <span class="inv-note">Доступ</span>
+          <span class="inv-name">Трость с отравленной иглой</span>
+          <span class="inv-note">1к4 колющий + яд; Сл 13, 1к4 урона ядом</span>
         </div>
-      
+
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">✦</span>
-          <span class="inv-name">Магний</span>
-          <span class="inv-note">2 дозы</span>
+          <span class="inv-icon" aria-hidden="true">⚔</span>
+          <span class="inv-name">Складной кнут</span>
+          <span class="inv-note">1к6 рубящий; дистанция 10 футов</span>
         </div>
-      
+
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🩸</span>
-          <span class="inv-name">Пузырёк с кровью Кроули</span>
+          <span class="inv-icon" aria-hidden="true">◉</span>
+          <span class="inv-name">Зеркальце в серебряной оправе</span>
+          <span class="inv-note">Для проверки макияжа и ослепления врагов</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◈</span>
+          <span class="inv-name">Флакон духов «Кровь розы»</span>
+          <span class="inv-note">Сильный аромат для отвлечения внимания</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◈</span>
+          <span class="inv-name">Флакон с кровью</span>
           <span class="inv-note">Восстанавливает 1к8 НР, 1 раз</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">◆</span>
+          <span class="inv-name">Серебряная заколка для волос</span>
+          <span class="inv-note">Импровизированное оружие: 1к4 колющий, серебро</span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Точный Выстрел</span>
-          <span class="ability-desc">🗡️ Атакующее · Следующая атака револьвером в этом ходу имеет преимущество и наносит дополнительно 1к6 урона.</span>
+          <span class="ability-name">Поцелуй предательства</span>
+          <span class="ability-desc">Атакующее · +1к6 урона отравой, преимущество против очарованных; 3/день</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Броский Заголовок</span>
-          <span class="ability-desc">📰 Защитное · Выберите одного союзника в 30 футах. Его следующая атака в этом ходу наносит дополнительно 1к6 урона. Использований в день: модификатор Интеллекта (3).</span>
+          <span class="ability-name">Ложный шаг</span>
+          <span class="ability-desc">Защитное · Реакция, +4 к КД, перемещение 5 футов; 3/день</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Кровавая Правда</span>
-          <span class="ability-desc">🩸 Вампирское · Действие. Вы вонзаете клыки в жертву, которая согласна или не может сопротивляться. Вы восстанавливаете 2к8 НР. В бою против сопротивляющейся цели: атака +4, урон 1к4+1 некротического. После использования сила атаки и спасбросков Гретты уменьшается на 1 до короткого отдыха.</span>
+          <span class="ability-name">Кровавая нить</span>
+          <span class="ability-desc">Вампирское · 2к4 некротического урона, знание местоположения цели; 2/день</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Сенсация</span>
-          <span class="ability-desc">💥 Ульта · 1 раз в день. Магний и порох создают ослепляющую вспышку. Все существа в радиусе 20 футов проходят спасбросок Телосложения (Сл 14), иначе ослеплены на 1к4+1 раундов. Нежить получает дополнительно 2к6 урона излучением.</span>
+          <span class="ability-name">Ледяной шёпот</span>
+          <span class="ability-desc">Новое · Действие. Враг в 30 футах проходит спасбросок Мудрости Сл 14, иначе испуган на 1 раунд; 2/день</span>
+        </div>
+
+        <div class="inv-item ability">
+          <span class="ability-name">Вдовья доля</span>
+          <span class="ability-desc">Ульта (1/день) · Атака 3к4+1к8 урона. Цель испугана на 1 раунд. +1к6 против мужчин</span>
         </div>
       </div>
           </div>
         </div>
 
-        <div class="section-title">Предыстория</div>
-        <div class="notes-box">Гретта знает, что правда опасна. Именно поэтому она всегда идет туда, где остальные молчат.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">09.06.2026</span>
+          <span class="footer-hint">НР и очки крови меняются кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

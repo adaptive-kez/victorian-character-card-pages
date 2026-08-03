@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Оборотень</title>
+  <title>Капитан Артур Стерлинг</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -508,11 +513,11 @@
 
         <div class="sheet-title">Карточка противника — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">О</div>
+          <div class="avatar">КА</div>
           <div class="header-info">
-            <div class="char-name">Оборотень</div>
-            <div class="char-sub">Человеческая форма · Гуманоид (оборотень)</div>
-            <div class="badges"><span class="badge">Агрессивный</span><span class="badge">Оборотень</span><span class="badge">Сл 12</span></div>
+            <div class="char-name">Капитан Артур Стерлинг</div>
+            <div class="char-sub">Командир ордена</div>
+            <div class="badges"><span class="badge">Святой Орден</span><span class="badge">Командир</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">22</span>
-              <span class="vital-max">/ <span class="hp-max">22</span></span>
+              <span class="vital-val hp-val">40</span>
+              <span class="vital-max">/ <span class="hp-max">40</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -533,137 +538,45 @@
 
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">12</div>
-            <div class="vital-max">Кожаная куртка</div>
+            <div class="vital-val">18</div>
+            <div class="vital-max">Серебряная кольчуга + щит</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+1</div>
-            <div class="vital-max">Скорость: 30 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">Не указана в документе</div>
           </div>
         </div>
 
 
-        <div class="section-title">Характеристики</div>
-        <div class="attrs">
-          
-            <div class="attr">
-              <div class="attr-name">Сила</div>
-              <div class="attr-val">16</div>
-              <div class="attr-mod">+3</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Ловкость</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Телосложение</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Интеллект</div>
-              <div class="attr-val">8</div>
-              <div class="attr-mod">-1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Мудрость</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Харизма</div>
-              <div class="attr-val">8</div>
-              <div class="attr-mod">-1</div>
-            </div>
-          
-        </div>
 
         <div class="two-col">
 
           <div>
-            <div class="section-title">Навыки</div>
-            <div class="skills">
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Иммунитет</span>
-          <span class="skill-bonus">Урон от обычного оружия в форме волка</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Уязвимость</span>
-          <span class="skill-bonus">Серебро</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Чувства</span>
-          <span class="skill-bonus">Ночное зрение 30 футов; Чутьё крови</span>
-        </button>
-      </div>
-          </div>
-          <div>
 
-            <div class="section-title">Снаряжение</div>
-            <div class="inv">
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🔪</span>
-          <span class="inv-name">Тяжёлый нож</span>
-          <span class="inv-note">1к6+3 колющий</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Кожаная куртка</span>
-          <span class="inv-note">КД 12</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◈</span>
-          <span class="inv-name">Звериная природа</span>
-          <span class="inv-note">Переход в форму волка при низких НР</span>
-        </div>
-      </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Тяжёлый нож</span>
-          <span class="ability-desc">🗡️ Атакующее · +5 к попаданию, 1к6+3 колющего урона.</span>
+          <span class="ability-name">Атака</span>
+          <span class="ability-desc">Атакующее · 1к10+3 + 2к4 серебром</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Бешеный отпор</span>
-          <span class="ability-desc">🛡️ Защитное · Реакция. Когда по оборотню попадают атакой, он может совершить одну атаку ножом в ответ. 2 раза в день.</span>
-        </div>
-      
-        <div class="inv-item ability">
-          <span class="ability-name">Запугивающий рык</span>
-          <span class="ability-desc">⚡ Контроль · Действие. Один враг в 20 футах преуспевает в спасброске Мудрости (Сл 12), иначе испуган на 1 раунд.</span>
-        </div>
-      
-        <div class="inv-item ability">
-          <span class="ability-name">Оборотничество</span>
-          <span class="ability-desc">💀 Ульта · Когда НР падает до 5 или ниже, превращается в волка. В форме волка: +2 к КД, укус +6 (1к8+4), скорость 50 футов. Не контролирует себя и атакует ближайшую цель, включая союзников.</span>
+          <span class="ability-name">Клич мести</span>
+          <span class="ability-desc">Ульта · Союзники +1к6 урона на 1 раунд</span>
         </div>
       </div>
           </div>
         </div>
 
         <div class="section-title">Предыстория</div>
-        <div class="notes-box">Крупные, агрессивные существа, работающие на «комьевоежорскую контору» центрального района. В человеческой форме выглядят как грубые, волосатые мужчины с жёлтыми глазами.</div>
+        <div class="notes-box">Брат погибшего капитана. Ещё более жестокий. Носит серебряную маску, скрывающую ожоги.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">04.06.2026</span>
+          <span class="footer-hint">НР меняется кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

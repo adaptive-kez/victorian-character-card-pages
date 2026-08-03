@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Катрин</title>
+  <title>«Молчаливый» Том</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -506,13 +511,13 @@
 <body>
   <article class="sheet">
 
-        <div class="sheet-title">Карточка персонажа — Викторианская эпоха</div>
+        <div class="sheet-title">Карточка противника — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">К</div>
+          <div class="avatar">«Т</div>
           <div class="header-info">
-            <div class="char-name">Катрин</div>
-            <div class="char-sub">Ночная Вербовщица · Вампир · Уровень 2</div>
-            <div class="badges"><span class="badge">Соблазн и расчет</span><span class="badge">Социальный дуэлянт</span><span class="badge">Бонус мастерства +2</span></div>
+            <div class="char-name">«Молчаливый» Том</div>
+            <div class="char-sub">Палач ордена</div>
+            <div class="badges"><span class="badge">Святой Орден</span><span class="badge">Палач</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">17</span>
-              <span class="vital-max">/ <span class="hp-max">17</span></span>
+              <span class="vital-val hp-val">50</span>
+              <span class="vital-max">/ <span class="hp-max">50</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -531,212 +536,47 @@
             </div>
           </div>
 
-          <div class="vital resource-vital" data-resource="blood">
-            <div class="vital-label">Очки крови</div>
-            <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val resource-val">10</span>
-              <span class="vital-max">/ <span class="resource-max">10</span></span>
-            </div>
-            <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
-            <div class="hp-controls">
-              <button class="hp-btn" type="button" onclick="changeResource(this,-1)" aria-label="Уменьшить очки крови">-</button>
-              <span style="font-size:11px;color:var(--color-text-secondary)">КРОВЬ</span>
-              <button class="hp-btn" type="button" onclick="changeResource(this,1)" aria-label="Увеличить очки крови">+</button>
-            </div>
-          </div>
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
-            <div class="vital-val">15</div>
-            <div class="vital-max">Кожаный корсет + ловкость</div>
+            <div class="vital-val">16</div>
+            <div class="vital-max">Чёрная ряса + кольчуга</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+3</div>
-            <div class="vital-max">Скорость: 30 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">Не указана в документе</div>
           </div>
         </div>
 
 
-        <div class="section-title">Характеристики</div>
-        <div class="attrs">
-          
-            <div class="attr">
-              <div class="attr-name">Сила</div>
-              <div class="attr-val">10</div>
-              <div class="attr-mod">+0</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Ловкость</div>
-              <div class="attr-val">16</div>
-              <div class="attr-mod">+3</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Телосложение</div>
-              <div class="attr-val">13</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Интеллект</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Мудрость</div>
-              <div class="attr-val">14</div>
-              <div class="attr-mod">+2</div>
-            </div>
-          
-            <div class="attr">
-              <div class="attr-name">Харизма</div>
-              <div class="attr-val">17</div>
-              <div class="attr-mod">+3</div>
-            </div>
-          
-        </div>
 
         <div class="two-col">
 
           <div>
-            <div class="section-title">Навыки</div>
-            <div class="skills">
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Спасброски</span>
-          <span class="skill-bonus">Ловкость +5, Харизма +5</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Вампирская особенность</span>
-          <span class="skill-bonus">Сопротивление некротическому урону</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Уязвимость</span>
-          <span class="skill-bonus">Урон из серебра</span>
-        </button>
-      
-        <button class="skill" type="button" onclick="toggleSkill(this)">
-          <span class="skill-dot proficient"></span>
-          <span class="skill-name">Вампирская особенность</span>
-          <span class="skill-bonus">Безмолвное падение: нет урона от падения до 30 футов</span>
-        </button>
-      </div>
-          </div>
-          <div>
 
-            <div class="section-title">Снаряжение</div>
-            <div class="inv">
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🗡</span>
-          <span class="inv-name">Кинжал-стилет</span>
-          <span class="inv-note">1к4+3 колющий; лёгкий, метательный 20/60, скрыт в рукаве</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">☂</span>
-          <span class="inv-name">Трость с отравленной иглой</span>
-          <span class="inv-note">1к4 колющий + яд; Сл 13 Телосложения или 1к4 ядом</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">〰</span>
-          <span class="inv-name">Складной кнут</span>
-          <span class="inv-note">1к6 рубящий; дистанция 10 футов, захват</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◈</span>
-          <span class="inv-name">Зеркальце в серебряной оправе</span>
-          <span class="inv-note">Проверка макияжа и ослепление отражённым светом</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">✦</span>
-          <span class="inv-name">Флакон духов «Кровь розы»</span>
-          <span class="inv-note">Отвлечение внимания или маскировка запаха крови</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Шёлковый платок</span>
-          <span class="inv-note">Жгут, повязка или символ статуса</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">✧</span>
-          <span class="inv-name">Серебряная заколка для волос</span>
-          <span class="inv-note">Импровизированное оружие 1к4, серебро</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🩸</span>
-          <span class="inv-name">Фляга с кровью Кроули</span>
-          <span class="inv-note">Восстанавливает 1к8 НР, 1 раз</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◉</span>
-          <span class="inv-name">Маска для бала</span>
-          <span class="inv-note">Смена облика, +1 к маскировке</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">⚙</span>
-          <span class="inv-name">Набор отмычек</span>
-          <span class="inv-note">Для проникновения в кабинеты вербуемых</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">✉</span>
-          <span class="inv-name">Поддельное любовное письмо</span>
-          <span class="inv-note">Предлог для проникновения к цели</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">✚</span>
-          <span class="inv-name">Серебряный крестик</span>
-          <span class="inv-note">Трофей, доказательство или предмет обмена</span>
-        </div>
-      </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Поцелуй предательства</span>
-          <span class="ability-desc">🗡️ Атакующее · Атака в ближнем бою стилетом. При попадании наносит обычный урон + 1к6 урона отравой. Если цель очарована или не ожидает атаки, атака имеет преимущество. Использований: модификатор Харизмы.</span>
+          <span class="ability-name">Атака</span>
+          <span class="ability-desc">Атакующее · 1к12+4 (серебряный молот)</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Ложный шаг</span>
-          <span class="ability-desc">🛡️ Защитное · Реакция, когда по Катрин совершают атаку в ближнем бою. Она получает +4 к КД против этой атаки. Если атака проваливается, Катрин может переместиться на 5 футов без провоцирования атак.</span>
-        </div>
-      
-        <div class="inv-item ability">
-          <span class="ability-name">Кровавая нить</span>
-          <span class="ability-desc">🩸 Вампирское · Дальняя атака заклинанием (30 футов). При попадании цель получает 2к4 некротического урона. До конца следующего хода Катрин знает точное местоположение цели, даже если та скрыта или невидима.</span>
-        </div>
-      
-        <div class="inv-item ability">
-          <span class="ability-name">Вдовья доля</span>
-          <span class="ability-desc">💥 Ульта · 1 раз в день. Катрин совершает одну атаку кинжалом. При попадании наносит 3к4 колющего + 1к8 некротического урона. Если цель — мужчина, урон увеличивается на 1к6. Цель проходит спасбросок Мудрости (Сл 14), иначе испугана на 1 раунд.</span>
+          <span class="ability-name">Судный удар</span>
+          <span class="ability-desc">Ульта · 3к8+4 урона</span>
         </div>
       </div>
           </div>
         </div>
 
         <div class="section-title">Предыстория</div>
-        <div class="notes-box">Ночная вербовщица действует мягко, пока не решит, что разговор окончен.</div>
+        <div class="notes-box">Гигант в чёрной рясе с серебряным молотом. Никогда не говорит.</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">09.06.2026</span>
+          <span class="footer-hint">НР меняется кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {

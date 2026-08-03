@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Констебль Генри Браун</title>
+  <title>Витто Скалетте</title>
   <style>
 
     @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap");
@@ -454,9 +454,9 @@
         padding: 16px;
       }
 
-      
 
-      
+
+
 
       .sheet {
         padding: 1rem;
@@ -498,7 +498,12 @@
         box-shadow: none;
       }
     }
-  
+
+
+${styles}
+    body { display: grid; place-items: start center; padding: 24px; }
+    .sheet { width: min(680px, 100%); }
+
     body { display: grid; place-items: start center; padding: 24px; }
     .sheet { width: min(680px, 100%); }
   </style>
@@ -508,11 +513,11 @@
 
         <div class="sheet-title">Карточка персонажа — Викторианская эпоха</div>
         <div class="header">
-          <div class="avatar">КГ</div>
+          <div class="avatar">ВС</div>
           <div class="header-info">
-            <div class="char-name">Констебль Генри Браун</div>
-            <div class="char-sub">Новообращённый жандарм · Вампир · Уровень 2</div>
-            <div class="badges"><span class="badge">Долг против природы</span><span class="badge">Полицейский-защитник</span><span class="badge">Сл 13-14</span></div>
+            <div class="char-name">Витто Скалетте</div>
+            <div class="char-sub">Ночной Хирург — глава ковена «Призраки Кроули»</div>
+            <div class="badges"><span class="badge">Главный герой</span><span class="badge">3 уровень</span></div>
           </div>
         </div>
 
@@ -520,8 +525,8 @@
           <div class="vital">
             <div class="vital-label">Здоровье</div>
             <div style="display:flex;align-items:baseline;justify-content:center;gap:4px">
-              <span class="vital-val hp-val">20</span>
-              <span class="vital-max">/ <span class="hp-max">20</span></span>
+              <span class="vital-val hp-val">30</span>
+              <span class="vital-max">/ <span class="hp-max">30</span></span>
             </div>
             <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
             <div class="hp-controls">
@@ -547,144 +552,166 @@
           <div class="vital">
             <div class="vital-label">Класс доспеха</div>
             <div class="vital-val">16</div>
-            <div class="vital-max">Посеребрённый стёганый жилет + щит</div>
+            <div class="vital-max">Улучшенный кожаный доспех</div>
           </div>
           <div class="vital">
             <div class="vital-label">Инициатива</div>
-            <div class="vital-val">+2</div>
-            <div class="vital-max">Скорость: 30 футов</div>
+            <div class="vital-val">—</div>
+            <div class="vital-max">30 футов</div>
           </div>
         </div>
 
 
         <div class="section-title">Характеристики</div>
         <div class="attrs">
-          
+
             <div class="attr">
               <div class="attr-name">Сила</div>
-              <div class="attr-val">15</div>
-              <div class="attr-mod">+2</div>
+              <div class="attr-val">17</div>
+              <div class="attr-mod">+3</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Ловкость</div>
               <div class="attr-val">14</div>
               <div class="attr-mod">+2</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Телосложение</div>
-              <div class="attr-val">14</div>
+              <div class="attr-val">15</div>
               <div class="attr-mod">+2</div>
             </div>
-          
+
             <div class="attr">
               <div class="attr-name">Интеллект</div>
+              <div class="attr-val">12</div>
+              <div class="attr-mod">+1</div>
+            </div>
+
+            <div class="attr">
+              <div class="attr-name">Мудрость</div>
               <div class="attr-val">10</div>
               <div class="attr-mod">+0</div>
             </div>
-          
-            <div class="attr">
-              <div class="attr-name">Мудрость</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
-            </div>
-          
+
             <div class="attr">
               <div class="attr-name">Харизма</div>
-              <div class="attr-val">12</div>
-              <div class="attr-mod">+1</div>
+              <div class="attr-val">10</div>
+              <div class="attr-mod">+0</div>
             </div>
-          
+
         </div>
 
         <div class="two-col">
 
           <div>
+            <div class="section-title">Навыки</div>
+            <div class="skills">
+        <button class="skill" type="button" onclick="toggleSkill(this)">
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Спасброски</span>
+          <span class="skill-bonus">Сила +5, Телосложение +4</span>
+        </button>
+
+        <button class="skill" type="button" onclick="toggleSkill(this)">
+          <span class="skill-dot proficient"></span>
+          <span class="skill-name">Навыки</span>
+          <span class="skill-bonus">Медицина +4, Запугивание +3, Восприятие +3</span>
+        </button>
+      </div>
+          </div>
+          <div>
 
             <div class="section-title">Снаряжение</div>
             <div class="inv">
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">⚒</span>
-          <span class="inv-name">Серебряная дубинка</span>
-          <span class="inv-note">1к4+2 дробящий; +1к4 серебром против нежити</span>
+          <span class="inv-icon" aria-hidden="true">⚔</span>
+          <span class="inv-name">Хирургическая пила (улучшенная, посеребрённая)</span>
+          <span class="inv-note">1к8+3 рубящий + 1к4 серебром; против нежити</span>
         </div>
-      
+
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🔫</span>
-          <span class="inv-name">Служебный револьвер</span>
-          <span class="inv-note">1к8+2 колющий; дистанция 40/120; 6 зарядов</span>
+          <span class="inv-icon" aria-hidden="true">🔪</span>
+          <span class="inv-name">Серебряные скальпели (3 шт.)</span>
+          <span class="inv-note">1к4+2 колющий + 1к4 серебром; дистанция 20/60</span>
         </div>
-      
+
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">⛓</span>
-          <span class="inv-name">Наручники</span>
-          <span class="inv-note">Можно использовать для захвата цели</span>
+          <span class="inv-icon" aria-hidden="true">◆</span>
+          <span class="inv-name">Знак главы ковена</span>
+          <span class="inv-note">Серебряная печатка с гербом Кроули</span>
         </div>
-      
+
         <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">▣</span>
-          <span class="inv-name">Посеребрённый стёганый жилет</span>
-          <span class="inv-note">КД 16</span>
+          <span class="inv-icon" aria-hidden="true">⚙</span>
+          <span class="inv-name">Набор хирургических инструментов</span>
+          <span class="inv-note">Ланцеты, зажимы, иглы</span>
         </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">◇</span>
-          <span class="inv-name">Полицейский значок</span>
-          <span class="inv-note">Теперь бесполезен</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">✦</span>
-          <span class="inv-name">Серебряный свисток</span>
-          <span class="inv-note">Для вызова подкрепления ковена</span>
-        </div>
-      
-        <div class="inv-item">
-          <span class="inv-icon" aria-hidden="true">🩸</span>
-          <span class="inv-name">Фляга с кровью</span>
-          <span class="inv-note">Для быстрого восстановления</span>
-        </div>
-      
+
         <div class="inv-item">
           <span class="inv-icon" aria-hidden="true">◈</span>
-          <span class="inv-name">Пузырёк со святой водой</span>
-          <span class="inv-note">На всякий случай</span>
+          <span class="inv-name">Флакон с кровью Аластара Кроули</span>
+          <span class="inv-note">Восстанавливает 2к8 НР, 1 раз</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">▣</span>
+          <span class="inv-name">Плащ чумного доктора</span>
+          <span class="inv-note">С серебряной нитью — защита от серебра</span>
+        </div>
+
+        <div class="inv-item">
+          <span class="inv-icon" aria-hidden="true">☠</span>
+          <span class="inv-name">Чумная колба</span>
+          <span class="inv-note">Содержит рой мух (компонент для ульты)</span>
         </div>
       </div>
             <div class="section-title">Способности</div>
             <div class="inv">
         <div class="inv-item ability">
-          <span class="ability-name">Задержание</span>
-          <span class="ability-desc">🗡️ Атакующее · Атака в ближнем бою. При попадании цель должна преуспеть в спасброске Силы (Сл 13), иначе становится опутанной, скорость 0 до конца своего следующего хода.</span>
+          <span class="ability-name">Глубокое Рассечение</span>
+          <span class="ability-desc">Атакующее · +1к6 некротического урона, цель теряет 1к4 НР в начале хода; постоянно</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Полицейское чутьё</span>
-          <span class="ability-desc">🛡️ Защитное · Реакция. Когда враг в 30 футах совершает скрытное действие, засаду, ловушку или обман, вы можете пройти проверку Восприятия (Сл 12). При успехе союзники получают преимущество на спасбросок против этого эффекта.</span>
+          <span class="ability-name">Превентивный надрез</span>
+          <span class="ability-desc">Защитное · Реакция, +3 к КД против одной атаки</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Принуждение к признанию</span>
-          <span class="ability-desc">🩸 Вампирское · Действие. Вы смотрите в глаза цели и задаёте один вопрос. Цель проходит спасбросок Мудрости (Сл 14), иначе отвечает честно одним словом или короткой фразой. Против нежити не работает.</span>
+          <span class="ability-name">Кровавый Ланцет</span>
+          <span class="ability-desc">Вампирское · Атака +6, 1к8+3 урона, восстановление половины урона; постоянно</span>
         </div>
-      
+
         <div class="inv-item ability">
-          <span class="ability-name">Вызов</span>
-          <span class="ability-desc">💥 Ульта · Вызывает 1к4 констеблей, которые слушаются приказов своего командира.</span>
+          <span class="ability-name">Лидерский приказ</span>
+          <span class="ability-desc">Лидерское · Бонусное действие. Союзник в 30 футах получает +1к4 к следующей атаке или проверке; постоянно</span>
+        </div>
+
+        <div class="inv-item ability">
+          <span class="ability-name">Хирургическая Ярость Главы</span>
+          <span class="ability-desc">Ульта (1/день) · 1 минута, +1к8 некротического урона, крит на 19-20</span>
+        </div>
+
+        <div class="inv-item ability">
+          <span class="ability-name">Рой чумных мух</span>
+          <span class="ability-desc">Клановое (1/игру) · Без проверки брони противника. Враги в радиусе 20 футов получают 3к6 некротического урона, игнорируя укрытие. Спасбросок Телосложения Сл 15, иначе отравлены на 1 минуту</span>
         </div>
       </div>
           </div>
         </div>
 
         <div class="section-title">Предыстория</div>
-        <div class="notes-box">Генри еще помнит закон, но новая кровь уже спорит с присягой.</div>
+        <div class="notes-box">Витто достаёт из-под плаща потрёпанную колбу из тёмного стекла. Внутри что-то жужжит. Он разбивает её о землю, и из осколков вырывается чёрное облако — тысячи мух, чьи крылья блестят в свете газовых фонарей. Они не трогают вампиров. Они знают своего хозяина. Но враги... враги слышат жужжание, которое звучит как похоронный звон.
+
+Фраза для использования: «Вы думали, чума умерла? Нет. Она просто –ждала своего доктора</div>
 
         <div class="footer">
-          <span class="footer-hint">HP меняется кнопками; навыки кликабельны</span>
-          <span class="export-date">09.06.2026</span>
+          <span class="footer-hint">НР и очки крови меняются кнопками; навыки кликабельны</span>
+          <span class="export-date">03.08.2026</span>
         </div>
-      
+
   </article>
   <script>
     function changeResource(button, delta) {
